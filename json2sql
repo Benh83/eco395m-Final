@@ -1,7 +1,10 @@
-from sqlalchemy import create_engine
-import pandas as pd
-import requests
-import re
 import os
+import pandas as pd
+from sqlalchemy import create_engine
 from dotenv import load_dotenv
-from datetime import datetime
+DB_HOST=34.41.134.112
+DB_PORT=5432
+DB_NAME=ibsheets
+DB_USER=postgres
+DB_PASSWORD= UNSURE WHEN TO SHARE
+connection_string = f"postgresql+psycopg2://{postgres}:{IBeasy395m}@{34.41.134.112}:{5432}/{ibsheets}"
