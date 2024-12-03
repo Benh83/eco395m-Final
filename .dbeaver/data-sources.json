@@ -1,0 +1,42 @@
+{
+	"folders": {},
+	"connections": {
+		"postgres-jdbc-1938a25017f-7d3e0e653afbe40a": {
+			"provider": "postgresql",
+			"driver": "postgres-jdbc",
+			"name": "IBsheets",
+			"save-password": true,
+			"configuration": {
+				"host": "34.29.86.19",
+				"port": "5432",
+				"database": "IBsheets",
+				"url": "jdbc:postgresql://34.29.86.19:5432/IBsheets",
+				"configurationType": "MANUAL",
+				"home": "/opt/homebrew/Cellar/postgresql@14/14.13_3",
+				"type": "dev",
+				"closeIdleConnection": true,
+				"provider-properties": {
+					"@dbeaver-show-non-default-db@": "false",
+					"@dbeaver-chosen-role@": ""
+				},
+				"auth-model": "native"
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"smart-commit": false,
+			"smart-commit-recover": true,
+			"auto-close-transactions": true,
+			"close-transactions-period": 1800,
+			"auto-close-connections": true,
+			"close-connections-period": 14400
+		}
+	}
+}
