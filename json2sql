@@ -1,10 +1,390 @@
 import os
 import pandas as pd
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from dotenv import load_dotenv
-DB_HOST=34.41.134.112
-DB_PORT=5432
-DB_NAME=ibsheets
-DB_USER=postgres
-DB_PASSWORD= UNSURE WHEN TO SHARE
-connection_string = f"postgresql+psycopg2://{postgres}:{IBeasy395m}@{34.41.134.112}:{5432}/{ibsheets}"
+import json
+
+
+load_dotenv("final.env")
+DB_HOST = os.getenv("DB_HOST")
+DB_PORT = os.getenv("DB_PORT")
+DB_NAME = os.getenv("DB_NAME")
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+
+
+connection_string = f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+engine = create_engine(connection_string)
+
+
+with engine.connect() as connection:
+    connection.execute(text("""
+        CREATE TABLE IF NOT EXISTS Deals (
+            id SERIAL PRIMARY KEY,
+            date_announced DATE,
+            date_closed DATE,
+            buyer VARCHAR(255),
+            target VARCHAR(255),
+            industry VARCHAR(255),
+            acquired_percentage VARCHAR(10),
+            deal_type VARCHAR(50),
+            deal_size_mln DECIMAL(10, 2),
+            premium VARCHAR(10),
+            implied_equity_value DECIMAL(10, 2),
+            implied_net_debt DECIMAL(10, 2),
+            implied_ev DECIMAL(10, 2),
+            form_of_consideration VARCHAR(50),
+            deal_description TEXT,
+            revenue DECIMAL(10, 2),
+            ebitda DECIMAL(10, 2),
+            short_business_description TEXT,
+            buy_side_advisors VARCHAR(255),
+            sell_side_advisors VARCHAR(255),
+            accretive_or_dilutive VARCHAR(255),
+            main_rationale TEXT
+        );
+    """))
+
+  
+    connection.execute(text("""
+        CREATE TABLE IF NOT EXISTS DealURLs (
+            url_id SERIAL PRIMARY KEY,
+            deal_id INT NOT NULL,
+            url TEXT NOT NULL,
+            FOREIGN KEY (deal_id) REFERENCES Deals(id) ON DELETE CASCADE
+        );
+    """))
+
+  
+    connection.execute(text("""
+        CREATE TABLE IF NOT EXISTS DealVariables (
+            variable_id SERIAL PRIMARY KEY,
+            deal_id INT NOT NULL,
+            variable_name VARCHAR(255) NOT NULL,
+            variable_value TEXT,
+            FOREIGN KEY (deal_id) REFERENCES Deals(id) ON DELETE CASCADE
+        );
+    """))
+
+    
+    connection.execute(text("""
+        CREATE TABLE IF NOT EXISTS DealVariableURLs (
+            variable_url_id SERIAL PRIMARY KEY,
+            variable_id INT NOT NULL,
+            url TEXT NOT NULL,
+            FOREIGN KEY (variable_id) REFERENCES DealVariables(variable_id) ON DELETE CASCADE
+        );
+    """))
+
+
+def parse_and_insert_deal_data(json_data):
+    deal_values = {
+        "date_announced": json_data.get("Date announced", {}).get("date_announced"),
+        "date_closed": json_data.get("Date closed (if closed)", {}).get("Date closed", None),
+        "buyer": json_data.get("Target", {}).get("Buyer"),
+        "target": json_data.get("Target", {}).get("Target"),
+        "industry": json_data.get("Industry", {}).get("industry"),
+        "acquired_percentage": json_data.get("Acquired percentage of the business", {}).get("Acquired Percentage"),
+        "deal_type": json_data.get("Private or public deal?", {}).get("Deal Type"),
+        "deal_size_mln": json_data.get("Deal size, mln $", {}).get("deal_size_mln"),
+        "premium": json_data.get("Premium (one-day prior the announcement)", {}).get("premium"),
+        "implied_equity_value": json_data.get("Implied equity", {}).get("Implied Equity Value", None),
+        "implied_net_debt": json_data.get("Implied Net Debt", {}).get("Implied Net Debt", None),
+        "implied_ev": json_data.get("Implied EV", {}).get("Implied Equity Value", None),
+        "form_of_consideration": json_data.get("Form of consideration (cash/stock/debt/mixture)", {}).get("form_of_consideration"),
+        "deal_description": json_data.get("Short deal description", {}).get("deal_description"),
+        "revenue": json_data.get("Revenue of the target company", {}).get("revenue", None),
+        "ebitda": json_data.get("EBITDA", {}).get("EBITDA", None),
+        "short_business_description": json_data.get("Short Business description (target company)", {}).get("short_business_description"),
+        "buy_side_advisors": json_data.get("Advisors (buy-side)", {}).get("advisors"),
+        "sell_side_advisors": json_data.get("Advisors (sell-side)", {}).get("advisors", {}).get("targetAdvisor"),
+        "accretive_or_dilutive": json_data.get("Accretive or Dilutive ", {}).get("Accretive or Dilutive"),
+        "main_rationale": json_data.get("Main rationale", {}).get("rationale"),
+    }
+
+    with engine.connect() as connection:
+        insert_query = text("""
+            INSERT INTO Deals (
+                date_announced,
+                date_closed,
+                buyer,
+                target,
+                industry,
+                acquired_percentage,
+                deal_type,
+                deal_size_mln,
+                premium,
+                implied_equity_value,
+                implied_net_debt,
+                implied_ev,
+                form_of_consideration,
+                deal_description,
+                revenue,
+                ebitda,
+                short_business_description,
+                buy_side_advisors,
+                sell_side_advisors,
+                accretive_or_dilutive,
+                main_rationale
+            ) VALUES (
+                :date_announced,
+                :date_closed,
+                :buyer,
+                :target,
+                :industry,
+                :acquired_percentage,
+                :deal_type,
+                :deal_size_mln,
+                :premium,
+                :implied_equity_value,
+                :implied_net_debt,
+                :implied_ev,
+                :form_of_consideration,
+                :deal_description,
+                :revenue,
+                :ebitda,
+                :short_business_description,
+                :buy_side_advisors,
+                :sell_side_advisors,
+                :accretive_or_dilutive,
+                :main_rationale
+            ) RETURNING id;
+        """)
+        result = connection.execute(insert_query, deal_values)
+        deal_id = result.fetchone()[0]
+        return deal_id
+
+
+def insert_deal_urls(deal_id, json_data):
+    urls = [
+        {"url": json_data.get("Date announced", {}).get("url")},
+        {"url": json_data.get("Date closed (if closed)", {}).get("URL", json_data.get("Date closed (if closed)", {}).get("url"))},
+        {"url": json_data.get("Target", {}).get("URL", json_data.get("Target", {}).get("url"))},
+        {"url": json_data.get("Buyer/investor", {}).get("URL", json_data.get("Buyer/investor", {}).get("url"))},
+        {"url": json_data.get("Seller", {}).get("URL", json_data.get("Seller", {}).get("url"))},
+        {"url": json_data.get("Acquired percentage of the business", {}).get("URL", json_data.get("Acquired percentage of the business", {}).get("url"))},
+        {"url": json_data.get("Private or public deal?", {}).get("URL", json_data.get("Private or public deal?", {}).get("url"))},
+        {"url": json_data.get("Deal size, mln $", {}).get("url")},
+        {"url": json_data.get("Premium (one-day prior the announcement)", {}).get("url")},
+        {"url": json_data.get("Implied Net Debt", {}).get("URL", json_data.get("Implied Net Debt", {}).get("url"))},
+        {"url": json_data.get("Implied EV", {}).get("URL", json_data.get("Implied EV", {}).get("url"))},
+        {"url": json_data.get("Form of consideration (cash/stock/debt/mixture)", {}).get("url")},
+        {"url": json_data.get("Short deal description", {}).get("url")},
+        {"url": json_data.get("Revenue of the target company", {}).get("url")},
+        {"url": json_data.get("EBITDA", {}).get("URL", json_data.get("EBITDA", {}).get("url"))},
+        {"url": json_data.get("Short Business description (target company)", {}).get("full_url", json_data.get("Short Business description (target company)", {}).get("url"))},
+        {"url": json_data.get("Advisors (sell-side)", {}).get("fullURL", json_data.get("Advisors (sell-side)", {}).get("url"))},
+        {"url": json_data.get("Main rationale", {}).get("url")},
+    ]
+
+    with engine.connect() as connection:
+        insert_query = text("""
+            INSERT INTO DealURLs (deal_id, url) VALUES (:deal_id, :url);
+        """)
+        for url in urls:
+            if url["url"]:
+                connection.execute(insert_query, {"deal_id": deal_id, "url": url["url"]})
+
+ 
+def insert_deal_variables(deal_id, json_data):
+    variables = [
+        {"name": "date_announced", "value": json_data.get("Date announced", {}).get("date_announced"), "url": json_data.get("Date announced", {}).get("url")},
+        {"name": "date_closed", "value": json_data.get("Date closed (if closed)", {}).get("Date closed"), "url": json_data.get("Date closed (if closed)", {}).get("URL", json_data.get("Date closed (if closed)", {}).get("url"))},
+        # Add more variables as needed
+    ]
+
+    with engine.connect() as connection:
+        insert_query = text("""
+            INSERT INTO DealVariables (deal_id, variable_name, variable_value) VALUES (:deal_id, :variable_name, :variable_value) RETURNING variable_id;
+        """)
+        insert_variable_url_query = text("""
+            INSERT INTO DealVariableURLs (variable_id, url) VALUES (:variable_id, :url);
+        """)
+        for variable in variables:
+            result = connection.execute(insert_query, {"deal_id": deal_id, "variable_name": variable["name"], "variable_value": variable["value"]})
+            variable_id = result.fetchone()[0]
+            if variable["url"]:
+                connection.execute(insert_variable_url_query, {"variable_id": variable_id, "url": variable["url"]})
+
+BASE_DIR = "data"
+JSONL_PATH = os.path.join(BASE_DIR, "results.jsonl")
+
+def parse_and_insert_data(file_path):
+    with open(file_path, 'r') as f:
+        for line_number, line in enumerate(f, start=1):
+            try:
+               
+                line = line.strip()
+                if not line:  
+                    continue
+                data = json.loads(line)
+
+                
+                date_announced = data.get("Date announced", {}).get("date_announced")
+                date_closed = data.get("Date closed (if closed)", {}).get("Date closed", None)
+                buyer = data.get("Target", {}).get("Buyer")
+                target = data.get("Target", {}).get("Target")
+                industry = data.get("Industry", {}).get("industry")
+                acquired_percentage = data.get("Acquired percentage of the business", {}).get("Acquired Percentage")
+                deal_type = data.get("Private or public deal?", {}).get("Deal Type")
+                deal_size_mln = data.get("Deal size, mln $", {}).get("deal_size_mln")
+                premium = data.get("Premium (one-day prior the announcement)", {}).get("premium")
+                if premium:
+                    premium = premium.replace("%", "")
+                implied_equity_value = data.get("Implied equity", {}).get("Implied Equity Value", None)
+                implied_net_debt = data.get("Implied Net Debt", {}).get("Implied Net Debt", None)
+                implied_ev = data.get("Implied EV", {}).get("Implied Equity Value", None)
+                form_of_consideration = data.get("Form of consideration (cash/stock/debt/mixture)", {}).get("form_of_consideration")
+                deal_description = data.get("Short deal description", {}).get("deal_description")
+                revenue = data.get("Revenue of the target company", {}).get("revenue", None)
+                ebitda = data.get("EBITDA", {}).get("EBITDA", None)
+                short_business_description = data.get("Short Business description (target company)", {}).get("short_business_description")
+                buy_side_advisors = data.get("Advisors (buy-side)", {}).get("advisors")
+                sell_side_advisors = data.get("Advisors (sell-side)", {}).get("advisors", {}).get("targetAdvisor")
+                accretive_or_dilutive = data.get("Accretive or Dilutive ", {}).get("Accretive or Dilutive")
+                main_rationale = data.get("Main rationale", {}).get("rationale")
+
+              
+                deal_id = parse_and_insert_deal_data(data)
+
+                
+                insert_deal_urls(deal_id, data)
+
+                
+                insert_deal_variables(deal_id, data)
+
+                print(f"Inserted data for {buyer} - {target}")
+            except json.JSONDecodeError as e:
+                print(f"JSON decoding error on line {line_number}: {e}")
+            except KeyError as e:
+                print(f"Missing key {e} on line {line_number}, skipping entry.")
+            except Exception as e:
+                print(f"Unexpected error on line {line_number}: {e}")
+
+def parse_and_insert_deal_data(json_data):
+    deal_values = {
+        "date_announced": json_data.get("Date announced", {}).get("date_announced"),
+        "date_closed": json_data.get("Date closed (if closed)", {}).get("Date closed", None),
+        "buyer": json_data.get("Target", {}).get("Buyer"),
+        "target": json_data.get("Target", {}).get("Target"),
+        "industry": json_data.get("Industry", {}).get("industry"),
+        "acquired_percentage": json_data.get("Acquired percentage of the business", {}).get("Acquired Percentage"),
+        "deal_type": json_data.get("Private or public deal?", {}).get("Deal Type"),
+        "deal_size_mln": json_data.get("Deal size, mln $", {}).get("deal_size_mln"),
+        "premium": json_data.get("Premium (one-day prior the announcement)", {}).get("premium"),
+        "implied_equity_value": json_data.get("Implied equity", {}).get("Implied Equity Value", None),
+        "implied_net_debt": json_data.get("Implied Net Debt", {}).get("Implied Net Debt", None),
+        "implied_ev": json_data.get("Implied EV", {}).get("Implied Equity Value", None),
+        "form_of_consideration": json_data.get("Form of consideration (cash/stock/debt/mixture)", {}).get("form_of_consideration"),
+        "deal_description": json_data.get("Short deal description", {}).get("deal_description"),
+        "revenue": json_data.get("Revenue of the target company", {}).get("revenue", None),
+        "ebitda": json_data.get("EBITDA", {}).get("EBITDA", None),
+        "short_business_description": json_data.get("Short Business description (target company)", {}).get("short_business_description"),
+        "buy_side_advisors": json_data.get("Advisors (buy-side)", {}).get("advisors"),
+        "sell_side_advisors": json_data.get("Advisors (sell-side)", {}).get("advisors", {}).get("targetAdvisor"),
+        "accretive_or_dilutive": json_data.get("Accretive or Dilutive ", {}).get("Accretive or Dilutive"),
+        "main_rationale": json_data.get("Main rationale", {}).get("rationale"),
+    }
+
+    with engine.connect() as connection:
+        insert_query = text("""
+            INSERT INTO Deals (
+                date_announced,
+                date_closed,
+                buyer,
+                target,
+                industry,
+                acquired_percentage,
+                deal_type,
+                deal_size_mln,
+                premium,
+                implied_equity_value,
+                implied_net_debt,
+                implied_ev,
+                form_of_consideration,
+                deal_description,
+                revenue,
+                ebitda,
+                short_business_description,
+                buy_side_advisors,
+                sell_side_advisors,
+                accretive_or_dilutive,
+                main_rationale
+            ) VALUES (
+                :date_announced,
+                :date_closed,
+                :buyer,
+                :target,
+                :industry,
+                :acquired_percentage,
+                :deal_type,
+                :deal_size_mln,
+                :premium,
+                :implied_equity_value,
+                :implied_net_debt,
+                :implied_ev,
+                :form_of_consideration,
+                :deal_description,
+                :revenue,
+                :ebitda,
+                :short_business_description,
+                :buy_side_advisors,
+                :sell_side_advisors,
+                :accretive_or_dilutive,
+                :main_rationale
+            ) RETURNING id;
+        """)
+        result = connection.execute(insert_query, deal_values)
+        deal_id = result.fetchone()[0]
+        return deal_id
+
+def insert_deal_urls(deal_id, json_data):
+    urls = [
+        {"url": json_data.get("Date announced", {}).get("url")},
+        {"url": json_data.get("Date closed (if closed)", {}).get("URL", json_data.get("Date closed (if closed)", {}).get("url"))},
+        {"url": json_data.get("Target", {}).get("URL", json_data.get("Target", {}).get("url"))},
+        {"url": json_data.get("Buyer/investor", {}).get("URL", json_data.get("Buyer/investor", {}).get("url"))},
+        {"url": json_data.get("Seller", {}).get("URL", json_data.get("Seller", {}).get("url"))},
+        {"url": json_data.get("Acquired percentage of the business", {}).get("URL", json_data.get("Acquired percentage of the business", {}).get("url"))},
+        {"url": json_data.get("Private or public deal?", {}).get("URL", json_data.get("Private or public deal?", {}).get("url"))},
+        {"url": json_data.get("Deal size, mln $", {}).get("url")},
+        {"url": json_data.get("Premium (one-day prior the announcement)", {}).get("url")},
+        {"url": json_data.get("Implied Net Debt", {}).get("URL", json_data.get("Implied Net Debt", {}).get("url"))},
+        {"url": json_data.get("Implied EV", {}).get("URL", json_data.get("Implied EV", {}).get("url"))},
+        {"url": json_data.get("Form of consideration (cash/stock/debt/mixture)", {}).get("url")},
+        {"url": json_data.get("Short deal description", {}).get("url")},
+        {"url": json_data.get("Revenue of the target company", {}).get("url")},
+        {"url": json_data.get("EBITDA", {}).get("URL", json_data.get("EBITDA", {}).get("url"))},
+        {"url": json_data.get("Short Business description (target company)", {}).get("full_url", json_data.get("Short Business description (target company)", {}).get("url"))},
+        {"url": json_data.get("Advisors (sell-side)", {}).get("fullURL", json_data.get("Advisors (sell-side)", {}).get("url"))},
+        {"url": json_data.get("Main rationale", {}).get("url")},
+    ]
+
+    with engine.connect() as connection:
+        insert_query = text("""
+            INSERT INTO DealURLs (deal_id, url) VALUES (:deal_id, :url);
+        """)
+        for url in urls:
+            if url["url"]:
+                connection.execute(insert_query, {"deal_id": deal_id, "url": url["url"]})
+
+def insert_deal_variables(deal_id, json_data):
+    variables = [
+        {"name": "date_announced", "value": json_data.get("Date announced", {}).get("date_announced"), "url": json_data.get("Date announced", {}).get("url")},
+        {"name": "date_closed", "value": json_data.get("Date closed (if closed)", {}).get("Date closed"), "url": json_data.get("Date closed (if closed)", {}).get("URL", json_data.get("Date closed (if closed)", {}).get("url"))},
+        
+    ]
+
+    with engine.connect() as connection:
+        insert_query = text("""
+            INSERT INTO DealVariables (deal_id, variable_name, variable_value) VALUES (:deal_id, :variable_name, :variable_value) RETURNING variable_id;
+        """)
+        insert_variable_url_query = text("""
+            INSERT INTO DealVariableURLs (variable_id, url) VALUES (:variable_id, :url);
+        """)
+        for variable in variables:
+            result = connection.execute(insert_query, {"deal_id": deal_id, "variable_name": variable["name"], "variable_value": variable["value"]})
+            variable_id = result.fetchone()[0]
+            if variable["url"]:
+                connection.execute(insert_variable_url_query, {"variable_id": variable_id, "url": variable["url"]})
+
