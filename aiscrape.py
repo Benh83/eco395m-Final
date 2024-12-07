@@ -38,6 +38,9 @@ def run_Perplexity(CONTENT,PROMPT):
 
 def get_Data(Buyer, Target): 
     extracted_data={}
+    extracted_data.update({"Buyer":{"Buyer":Buyer,"URL":None}})
+    extracted_data.update({"Target":{"Target":Target,"URL":None}})
+
     for row in get_Content(): 
         CONTENT=row
         variable=row[9:row.index(" in ")]
@@ -48,9 +51,28 @@ def get_Data(Buyer, Target):
         extracted_data.update(JSON_n)
     return extracted_data  
 
+def clean_values(data):
+    mf_values=pd.DataFrame() 
+    for i in data.keys():
+        a=data[i]
+        akey=list(a.keys())
+        mf_values.loc[0,i]=a[akey[0]]
+    return mf_values
+
+def clean_urls(data):
+    mf_url=pd.DataFrame() 
+    for i in data.keys():
+        a=data[i]
+        akey=list(a.keys())
+        mf_url.loc[0,i]=a[akey[1]]
+    return mf_url
+
 
 G_M=get_Data("Google","Mandiant")
-print(G_M)
+clean_data=clean_values(G_M)
+clean_url=clean_urls(G_M)
+
+
 
 BASE_DIR = "data"
 JSONL_PATH = os.path.join(BASE_DIR, "results.jsonl")
