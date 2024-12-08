@@ -68,9 +68,7 @@ def clean_urls(data):
     return mf_url
 
 
-G_M=get_Data("Google","Mandiant")
-clean_data=clean_values(G_M)
-clean_url=clean_urls(G_M)
+
 
 
 
