@@ -9,8 +9,9 @@ import re
 pd.set_option('display.max_rows', None)  # No limit on rows
 pd.set_option('display.max_columns', None)  # No limit on columns
 
-BASE_DIR = "C:/Users/Admin/Desktop/Python-Class/eco395m-Final/data"
+BASE_DIR = "./eco395m-Final/data" 
 JSONL_PATH = os.path.join(BASE_DIR, "results.jsonl")
+
 
 with open(JSONL_PATH, 'r') as file:
     data = json.load(file)
@@ -30,7 +31,7 @@ def url_links(dataframe):
 
 
 def clean_text(dataframe):
-    """Cleans a the column names of the dataframe"""
+    """Cleans all the column names of the dataframe"""
     dataframe.columns = [column_name.split("_")[0] for column_name in dataframe.columns]
     dataframe = dataframe.loc[:, ~dataframe.columns.duplicated()]
     
@@ -38,28 +39,14 @@ def clean_text(dataframe):
 
 
 def write_to_csv(dataframe):
+    "Writes all the cleaned data to a CSV"
     links = url_links(dataframe) 
     df_clean_text = clean_text(dataframe)
     df_cleaned = df_clean_text.drop(columns=[column_name for column_name in df_clean_text.columns if 'URL' in column_name or 'url' in column_name])
     df_cleaned["Links"] = [", ".join(links)] * len(df_cleaned)
-    df_cleaned.to_csv('m&a_data.csv', index=False)
 
+    output_path = './m&a_data.csv' 
+    df_cleaned.to_csv(output_path, index=False)
+    
 
 write_to_csv(df)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
