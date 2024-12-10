@@ -1,8 +1,12 @@
 # Group Members
 Matias Ibarburu
+
 Vighnesh Avadhanam
+
 Benjamin Hinrichs
+
 Maksim Korenev
+
 Chris Cain
 
 # Goal of the Analysis
