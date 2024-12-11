@@ -19,55 +19,29 @@ def cleaning(dataframe):
     return dataframe 
 
 
-def implied_equity(dataframe):
-    "Calculating Equity from EV and Net Debt"
-    EV = dataframe["implied_ev"]
-    ND = dataframe["implied_net_debt"]
-    if pd.notna(EV).all() and pd.notna(ND).all():
-        dataframe["implied_equity"] = EV - ND
-    else:
-        dataframe["implied_equity"] = None
-
-    cols = list(dataframe.columns)
-    ev_index = cols.index("implied_ev")
-    nd_index = cols.index("implied_net_debt")
-    ie_index = cols.index("implied_equity")
-    new_cols = cols[:nd_index+1] + ["implied_equity"] + cols[nd_index+1:ie_index]
-    dataframe = dataframe.loc[:, new_cols]
     
-    return dataframe
+
 
 def ratios(dataframe):
     """Calculating EV/EBITDA and EV/Sales"""
+    dataframe = enterprise_value(dataframe)
     EV = dataframe["implied_ev"]
-    Sales = dataframe["ltm_revenue"]
-    EBITDA = dataframe["ltm_ebitda"]
+    Sales = dataframe["ly_revenue"]
+    EBITDA = dataframe["ly_ebitda"]
     
-    if pd.notna(Sales).all() and pd.notna(EBITDA).all():
-        
-        if (EBITDA > 0).all():
-            dataframe["ev_ebitda"] = EV / EBITDA
-        else:
-            dataframe["ev_ebitda"] = None
-            
+    dataframe["ev_ebitda"] = (EV / EBITDA).where(pd.notna(Sales) & pd.notna(EBITDA) & (EBITDA > 0), None)
+    dataframe["ev_sales"] = (EV / Sales).where(pd.notna(Sales) & (Sales != 0), None)
 
-        if (Sales != 0).all():
-            dataframe["ev_sales"] = EV / Sales
-        else:
-            dataframe["ev_sales"] = None
-
-    else:
-        dataframe["ev_ebitda"] = None
-        dataframe["ev_sales"] = None
 
     cols = list(dataframe.columns)
-    ebitda_index = cols.index("ltm_ebitda")
+    ebitda_index = cols.index("ly_ebitda")
     ev_ebidta_index = cols.index("ev_ebitda")
   
     new_cols = cols[:ebitda_index+1] + ["ev_ebitda", "ev_sales"] + cols[ebitda_index+1:ev_ebidta_index]
     dataframe = dataframe.loc[:, new_cols]
     
     return dataframe
+
 
 def clean_values(data):
     mf_values=pd.DataFrame() 
@@ -84,6 +58,25 @@ def clean_urls(data):
         akey=list(a.keys())
         mf_url.loc[0,i]=a[akey[1]]
     return mf_url
+
+def enterprise_value(dataframe):
+    "Calculating EV from Equity and Net Debt"
+    EQ = dataframe["implied_equity"]
+    ND = dataframe["implied_net_debt"]
+    
+
+    dataframe["implied_ev"] = dataframe.apply(lambda row: row["implied_equity"] if pd.isna(row["implied_net_debt"]) else 
+                (row["implied_equity"] + row["implied_net_debt"] if pd.notna(row["implied_equity"]) else None), 
+    axis=1)
+   
+
+    cols = list(dataframe.columns)
+    nd_index = cols.index("implied_net_debt")
+    ie_index = cols.index("implied_ev")
+    new_cols = cols[:nd_index+1] + ["implied_ev"] + cols[nd_index+1:ie_index]
+    dataframe = dataframe.loc[:, new_cols]
+    
+    return dataframe
 
 
 
