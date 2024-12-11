@@ -1,8 +1,7 @@
 import os
 import dotenv
 import pandas as pd
-from sqlalchemy import create_engine
-from sqlalchemy import text 
+from sqlalchemy import create_engine,text
 from dotenv import load_dotenv
 
 # Load environment variables from final.env
@@ -73,8 +72,8 @@ def append_deal_to_database(engine,deals_df,urls_df):
     # Ensure column names are clean
     deals_df.columns = deals_df.columns.str.strip()
     urls_df.columns = urls_df.columns.str.strip()
-    buyer=deals_df['buyer']
-    target=deals_df['target']
+    buyer=deals_df.loc[0,'buyer']
+    target=deals_df.loc[0,'target']
     # Append deal data to the deals table
     with engine.connect() as connection:
         deals_df.to_sql('deals', con=connection, if_exists='append', index=False)

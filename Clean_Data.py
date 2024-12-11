@@ -4,7 +4,7 @@ import os
 pd.set_option('display.max_columns', None) 
 
 def clean_column_names(dataframe): 
-    IN_PATH = os.path.join("data", "headers.xlsx")
+    IN_PATH = os.path.join('setup', 'headers.xlsx')
     headers=pd.read_excel(IN_PATH)
     dataframe.columns=headers.columns.str.strip()
     return dataframe
@@ -12,7 +12,6 @@ def clean_column_names(dataframe):
 def cleaning(dataframe): 
     dataframe['date_announced'] = pd.to_datetime(dataframe['date_announced'], format='%m/%d/%Y')
     dataframe['date_closed'] = pd.to_datetime(dataframe['date_closed'], format='%m/%d/%Y')
-    dataframe["deal_size"]=dataframe["deal_size"]*1000000
     float_columns = [
         'acquired_percentage', 'deal_size', 'premium',
         'implied_equity_value', 'implied_net_debt', 'ly_revenue', 'ly_ebitda'
@@ -25,7 +24,12 @@ def cleaning(dataframe):
 
                 else:
                     dataframe[col] = pd.to_numeric(dataframe[col])
-
+    dataframe['deal_size']=dataframe['deal_size']*1000000
+    dataframe['ly_revenue']=dataframe['ly_revenue']*1000000
+    dataframe['ly_ebitda']=dataframe['ly_ebitda']*1000000
+    dataframe['implied_equity_value']=dataframe['implied_equity_value']*1000000
+    dataframe['implied_net_debt']=dataframe['implied_net_debt']*1000000
+    dataframe=ratios(dataframe)
     return dataframe
 
     

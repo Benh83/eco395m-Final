@@ -17,9 +17,9 @@ found="yes"
 if len(sql_values)>1:
 	print("Possible results \n")
 	print(sql_results["id","buyer","seller"])
-	found=input("Is the deal you are looking for their?(yes or no):")
+	found=input("Is the deal you are looking for there?(yes or no):")
 	while found!="yes" and found!="no": 
-		found=input("Input not Valid.Is the deal you are looking for their?(yes or no):")	
+		found=input("Input not Valid. Is the deal you are looking for there?(yes or no):")	
 	if found=="yes": 
 			found_id=input("Please enter id of the deal you want to see.")
 			query_values="SELECT * FROM deals WHERE id=%s"
@@ -33,7 +33,7 @@ elif len(sql_values)==0 or found=="no":
 	clean_urls=clean_column_names(df_url)
 	df_data=clean_column_names(df_data)
 	clean_data=cleaning(df_data)
-	clean_data=ratios(clean_data)
+	#clean_data=ratios(clean_data)
 	clean_urls["buyer"]=clean_data["buyer"]
 	clean_urls["target"]=clean_data["target"]
 	deal_id=append_deal_to_database(engine,clean_data,clean_urls)
@@ -46,13 +46,13 @@ deal_id=sql_values.loc[0,"id"]
 query_url="Select*from urls where deal_id=%s"
 params=(float(deal_id),)
 sql_urls=pd.read_sql_query(query_url, engine,params=params)
-OUTPATH_VALUES= os.path.join("data", f"{Target}_{Buyer}_values.xlsx")
-OUTPATH_URLS=os.path.join("data", f"{Target}_{Buyer}_urls.xlsx")
+OUTPATH_PATH= os.path.join("data", f"{Target}_{Buyer}.xlsx")
 
+with pd.ExcelWriter(OUTPATH_PATH, engine='xlsxwriter') as writer:
+    sql_values.to_excel(writer, sheet_name='data',index=False)
+    sql_urls.to_excel(writer, sheet_name='urls',index=False)
 
-sql_values.to_excel(OUTPATH_VALUES,index=False)
-sql_urls.to_excel(OUTPATH_URLS,index=False)
-
+print(f"File found at {OUTPATH_PATH}")
 
  
 
