@@ -3,7 +3,7 @@ import json
 import pandas as pd
 from aiscrape import get_Data
 from tosql import create_tables,create_db_engine,append_deal_to_database
-from Clean_Data import implied_equity,ratios,clean_column_names,clean_values,clean_urls,cleaning
+from Clean_Data import enterprise_value,ratios,clean_column_names,clean_values,clean_urls,cleaning
 
 engine=create_db_engine()
 create_tables(engine)
@@ -32,8 +32,8 @@ elif len(sql_values)==0 or found=="no":
 	df_url=clean_urls(extracted_data)
 	clean_urls=clean_column_names(df_url)
 	df_data=clean_column_names(df_data)
-	clean_data=ratios(implied_equity(df_data))
 	clean_data=cleaning(clean_data)
+	clean_data=ratios(enterprise_value(df_data))
 	deal_id=append_deal_to_database(engine,clean_data,clean_urls)
 	query_values="SELECT * FROM deals WHERE id=%s"
 	params=(deal_id)
