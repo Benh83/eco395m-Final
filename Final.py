@@ -11,9 +11,9 @@ Target=input("Please input Target Company:").strip()
 Buyer=input("Please input Buyer:").strip()
 query_values = "SELECT * FROM deals WHERE LOWER(target) LIKE %s AND LOWER(buyer)  LIKE %s"
 # Parameters dictionary
-params = (f'%{Target.lower()}%',f' %{Buyer.lower()}%')
+params = (f'%{Target.lower()}%',f'%{Buyer.lower()}%')
 sql_values=pd.read_sql_query(query_values, engine, params=params)
-
+found="yes"
 if len(sql_values)>1:
 	print("Possible results \n")
 	print(sql_results["id","buyer","seller"])
@@ -23,7 +23,7 @@ if len(sql_values)>1:
 	if found=="yes": 
 			found_id=input("Please enter id of the deal you want to see.")
 			query_values="SELECT * FROM deals WHERE id=%s"
-			params=(found_id)
+			params=(found_id,)
 			sql_values=pd.read_sql_query(query_values, engine,params=params)
 elif len(sql_values)==0 or found=="no": 
 	print("Extracting The Data from Internet")
@@ -32,24 +32,22 @@ elif len(sql_values)==0 or found=="no":
 	df_url=clean_urls(extracted_data)
 	clean_urls=clean_column_names(df_url)
 	df_data=clean_column_names(df_data)
-	clean_data=cleaning(clean_data)
-	clean_data=ratios(enterprise_value(df_data))
+	clean_data=cleaning(df_data)
+	clean_data=ratios(clean_data)
 	clean_urls["buyer"]=clean_data["buyer"]
 	clean_urls["target"]=clean_data["target"]
 	deal_id=append_deal_to_database(engine,clean_data,clean_urls)
 	query_values="SELECT * FROM deals WHERE id=%s"
-	params=(deal_id)
+	params=(deal_id,)
 	sql_values=pd.read_sql_query(query_values, engine,params=params)
-
-
 
 
 deal_id=sql_values.loc[0,"id"]
 query_url="Select*from urls where deal_id=%s"
-
-sql_urls=pd.read_sql_query(query_url, engine,params=deal_id)
-OUTPATH_VALUES= os.path.join("data", f"{Target}_{Buyer}_values.csv")
-OUTPATH_URLS=os.path.join("data", f"{Target}_{Buyer}_urls.csv")
+params=(float(deal_id),)
+sql_urls=pd.read_sql_query(query_url, engine,params=params)
+OUTPATH_VALUES= os.path.join("data", f"{Target}_{Buyer}_values.xlsx")
+OUTPATH_URLS=os.path.join("data", f"{Target}_{Buyer}_urls.xlsx")
 
 
 sql_values.to_excel(OUTPATH_VALUES,index=False)
