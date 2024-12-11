@@ -7,11 +7,11 @@ from Clean_Data import enterprise_value,ratios,clean_column_names,clean_values,c
 
 engine=create_db_engine()
 create_tables(engine)
-Target=input("Please input Target Company:")
-Buyer=input("Please input Buyer:")
-query_values = "SELECT * FROM deals WHERE target LIKE %s AND buyer  LIKE %s"
+Target=input("Please input Target Company:").strip()
+Buyer=input("Please input Buyer:").strip()
+query_values = "SELECT * FROM deals WHERE LOWER(target) LIKE %s AND LOWER(buyer)  LIKE %s"
 # Parameters dictionary
-params = (f'%{Target}%',f' %{Buyer}%')
+params = (f'%{Target.lower()}%',f' %{Buyer.lower()}%')
 sql_values=pd.read_sql_query(query_values, engine, params=params)
 
 if len(sql_values)>1:
@@ -34,6 +34,8 @@ elif len(sql_values)==0 or found=="no":
 	df_data=clean_column_names(df_data)
 	clean_data=cleaning(clean_data)
 	clean_data=ratios(enterprise_value(df_data))
+	clean_urls["buyer"]=clean_data["buyer"]
+	clean_urls["target"]=clean_data["target"]
 	deal_id=append_deal_to_database(engine,clean_data,clean_urls)
 	query_values="SELECT * FROM deals WHERE id=%s"
 	params=(deal_id)
