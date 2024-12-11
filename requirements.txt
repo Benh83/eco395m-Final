@@ -7,3 +7,5 @@ urllib3==2.2.3
 pandas==1.3.5
 SQLAlchemy==1.4.34
 psycopg2-binary==2.9.3
+openpyxl==latest
+lxml==latest

@@ -13,10 +13,23 @@ def cleaning(dataframe):
     dataframe['date_announced'] = pd.to_datetime(dataframe['date_announced'], format='%m/%d/%Y')
     dataframe['date_closed'] = pd.to_datetime(dataframe['date_closed'], format='%m/%d/%Y')
 
+    float_columns = [
+        'acquired_percentage', 'deal_size', 'premium',
+        'implied_ev', 'implied_net_debt', 'ltm_revenue', 'ltm_ebitda'
+    ]
+    
+    for col in float_columns:
+        if col in dataframe.columns:
+            try:
+                if col == 'acquired_percentage':
+                    dataframe[col] = dataframe[col].str.replace('%', '').astype(float)
+                else:
+                    dataframe[col] = pd.to_numeric(dataframe[col])
+            except Exception as e:
+                print(f"error converting column {col} to float: {e}")
 
-    dataframe["acquired_percentage"]=float(dataframe.loc[0,"acquired_percentage"].strip('%'))
-    dataframe["deal_size"]=dataframe["deal_size"]*1000000
-    return dataframe 
+    return dataframe
+
 
 
 def implied_equity(dataframe):
@@ -68,6 +81,40 @@ def ratios(dataframe):
     dataframe = dataframe.loc[:, new_cols]
     
     return dataframe
+
+def ratios(dataframe):
+    """Calculating EV/EBITDA and EV/Sales with error handling for invalid data."""
+    EV = dataframe.get("implied_ev")
+    Sales = dataframe.get("ltm_revenue")
+    EBITDA = dataframe.get("ltm_ebitda")
+
+    # Initialize columns with None as default
+    dataframe["ev_ebitda"] = None
+    dataframe["ev_sales"] = None
+
+    if EV is not None and Sales is not None and EBITDA is not None:
+        # Check for invalid EBITDA values (<= 0)
+        invalid_ebitda_rows = (EBITDA <= 0)
+        if invalid_ebitda_rows.any():
+            print(f"Warning: Found {invalid_ebitda_rows.sum()} rows with non-positive EBITDA values. Skipping EV/EBITDA calculation for these rows.")
+        else:
+            dataframe.loc[~invalid_ebitda_rows, "ev_ebitda"] = EV / EBITDA
+
+        # Check for invalid Sales values (<= 0)
+        invalid_sales_rows = (Sales <= 0)
+        if invalid_sales_rows.any():
+            print(f"Warning: Found {invalid_sales_rows.sum()} rows with non-positive Sales values. Skipping EV/Sales calculation for these rows.")
+        else:
+            dataframe.loc[~invalid_sales_rows, "ev_sales"] = EV / Sales
+
+    # Reorder columns for readability
+    cols = list(dataframe.columns)
+    if "ltm_ebitda" in cols:
+        ebitda_index = cols.index("ltm_ebitda")
+        dataframe = dataframe.loc[:, cols[:ebitda_index+1] + ["ev_ebitda", "ev_sales"] + cols[ebitda_index+1:]]
+    
+    return dataframe
+
 
 def clean_values(data):
     mf_values=pd.DataFrame() 
