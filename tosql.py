@@ -122,14 +122,14 @@ def append_urls_to_database(engine,urls_df):
 
 def create_db_engine():
     # Load environment variables
-    load_dotenv('final.env')
+    dotenv.load_dotenv() 
 
     # Get database connection parameters from environment variables
-    db_host = os.getenv('DB_HOST')
-    db_name = os.getenv('DB_NAME')
-    db_user = os.getenv('DB_USER')
-    db_password = os.getenv('DB_PASSWORD')
-    db_port = os.getenv('DB_PORT', 5432)  # Default to 5432 if not specified
+    db_host = os.environ['DB_HOST']
+    db_name = os.environ['DB_NAME']
+    db_user = os.environ['DB_USER']
+    db_password = os.environ['DB_PASSWORD']
+    db_port = os.environ['DB_PORT']  # Default to 5432 if not specified
 
     # Create the database URL
     db_url = f'postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}'
