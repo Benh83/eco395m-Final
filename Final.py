@@ -46,15 +46,14 @@ deal_id=sql_values.loc[0,"id"]
 query_url="Select*from urls where deal_id=%s"
 params=(float(deal_id),)
 sql_urls=pd.read_sql_query(query_url, engine,params=params)
-OUTPATH_VALUES= os.path.join("data", f"{Target}_{Buyer}_values.xlsx")
-OUTPATH_URLS=os.path.join("data", f"{Target}_{Buyer}_urls.xlsx")
+OUTPATH_PATH= os.path.join("data", f"{Target}_{Buyer}.xlsx")
 
+with pd.ExcelWriter(OUTPATH_PATH, engine='xlsxwriter') as writer:
+    sql_values.to_excel(writer, sheet_name='data',index=False)
+    sql_urls.to_excel(writer, sheet_name='urls',index=False)
 
-sql_values.to_excel(OUTPATH_VALUES,index=False)
-sql_urls.to_excel(OUTPATH_URLS,index=False)
+print(f"File found at {OUTPATH_PATH}")
 
-print(f"Data file found at {OUTPATH_VALUES}")
-print(f"URL file found at {OUTPATH_URLS}")
  
 
 

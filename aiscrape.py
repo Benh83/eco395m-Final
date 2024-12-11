@@ -11,7 +11,7 @@ CACHE_DIR = ".cachedir"
 
 
 def get_Content():
-    IN_PATH = os.path.join("data", "Guide.xlsx")
+    IN_PATH = os.path.join("setup", "Guide.xlsx")
     guide=pd.read_excel(IN_PATH)
     list_content=[]
     for _, row in guide.iterrows(): 

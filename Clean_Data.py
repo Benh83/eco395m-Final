@@ -4,7 +4,7 @@ import os
 pd.set_option('display.max_columns', None) 
 
 def clean_column_names(dataframe): 
-    IN_PATH = os.path.join('data', 'headers.xlsx')
+    IN_PATH = os.path.join('setup', 'headers.xlsx')
     headers=pd.read_excel(IN_PATH)
     dataframe.columns=headers.columns.str.strip()
     return dataframe
