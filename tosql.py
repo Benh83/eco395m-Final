@@ -16,19 +16,18 @@ def create_tables(engine):
                 target TEXT,
                 date_announced DATE,
                 date_closed DATE, 
-                seller TEXT,
                 industry_of_target TEXT,
                 acquired_percentage FLOAT,
                 private_or_public TEXT,
                 deal_size FLOAT,
                 premium FLOAT,
-                implied_ev FLOAT,
                 implied_net_debt FLOAT,
+                implied_ev FLOAT,
                 implied_equity FLOAT,
                 form_of_consideration TEXT,
                 short_deal_description TEXT,
-                ltm_revenue FLOAT,
-                ltm_ebitda FLOAT,
+                ly_revenue FLOAT,
+                ly_ebitda FLOAT,
                 ev_ebitda FlOAT, 
                 ev_sales FLOAT,
                 short_business_description TEXT,
@@ -123,14 +122,14 @@ def append_urls_to_database(engine,urls_df):
 
 def create_db_engine():
     # Load environment variables
-    load_dotenv('final.env')
+    dotenv.load_dotenv() 
 
     # Get database connection parameters from environment variables
-    db_host = os.getenv('DB_HOST')
-    db_name = os.getenv('DB_NAME')
-    db_user = os.getenv('DB_USER')
-    db_password = os.getenv('DB_PASSWORD')
-    db_port = os.getenv('DB_PORT', 5432)  # Default to 5432 if not specified
+    db_host = os.environ['DB_HOST']
+    db_name = os.environ['DB_NAME']
+    db_user = os.environ['DB_USER']
+    db_password = os.environ['DB_PASSWORD']
+    db_port = os.environ['DB_PORT']  # Default to 5432 if not specified
 
     # Create the database URL
     db_url = f'postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}'
