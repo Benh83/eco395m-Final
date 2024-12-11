@@ -1,4 +1,5 @@
 import os
+import dotenv
 import pandas as pd
 from sqlalchemy import create_engine
 from sqlalchemy import text 
@@ -21,7 +22,7 @@ def create_tables(engine):
                 private_or_public TEXT,
                 deal_size FLOAT,
                 premium FLOAT,
-                implied_equity FLOAT,
+                implied_equity_value FLOAT,
                 implied_net_debt FLOAT,
                 implied_ev FLOAT,
                 form_of_consideration TEXT,
@@ -46,18 +47,17 @@ def create_tables(engine):
                 target TEXT,
                 date_announced TEXT,
                 date_closed TEXT,
-                seller TEXT,
                 industry_of_target TEXT,
                 acquired_percentage TEXT,
                 private_or_public TEXT,
                 deal_size TEXT,
                 premium TEXT,
-                implied_ev TEXT,
+                implied_equity_value TEXT,
                 implied_net_debt TEXT,
                 form_of_consideration TEXT,
                 short_deal_description TEXT,
-                ltm_revenue TEXT,
-                ltm_ebitda TEXT,
+                ly_revenue TEXT,
+                ly_ebitda TEXT,
                 short_business_description TEXT,
                 advisor_to_seller TEXT,
                 advisor_to_buyer TEXT,
