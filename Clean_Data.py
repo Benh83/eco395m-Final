@@ -6,18 +6,27 @@ pd.set_option('display.max_columns', None)
 def clean_column_names(dataframe): 
     IN_PATH = os.path.join("data", "headers.xlsx")
     headers=pd.read_excel(IN_PATH)
-    dataframe.columns=headers.columns
+    dataframe.columns=headers.columns.str.strip()
     return dataframe
 
 def cleaning(dataframe): 
     dataframe['date_announced'] = pd.to_datetime(dataframe['date_announced'], format='%m/%d/%Y')
     dataframe['date_closed'] = pd.to_datetime(dataframe['date_closed'], format='%m/%d/%Y')
-
-
-    dataframe["acquired_percentage"]=float(dataframe.loc[0,"acquired_percentage"].strip('%'))
     dataframe["deal_size"]=dataframe["deal_size"]*1000000
-    return dataframe 
+    float_columns = [
+        'acquired_percentage', 'deal_size', 'premium',
+        'implied_equity_value', 'implied_net_debt', 'ly_revenue', 'ly_ebitda'
+    ]
+    
+    for col in float_columns:
+        if col in dataframe.columns and isinstance(dataframe.loc[0,col], str):
+                if "%" in dataframe.loc[0,col] :
+                    dataframe.loc[0,col] =float(dataframe.loc[0, col].strip('%'))
 
+                else:
+                    dataframe[col] = pd.to_numeric(dataframe[col])
+
+    return dataframe
 
     
 
@@ -61,12 +70,12 @@ def clean_urls(data):
 
 def enterprise_value(dataframe):
     "Calculating EV from Equity and Net Debt"
-    EQ = dataframe["implied_equity"]
+    EQ = dataframe["implied_equity_value"]
     ND = dataframe["implied_net_debt"]
     
 
-    dataframe["implied_ev"] = dataframe.apply(lambda row: row["implied_equity"] if pd.isna(row["implied_net_debt"]) else 
-                (row["implied_equity"] + row["implied_net_debt"] if pd.notna(row["implied_equity"]) else None), 
+    dataframe["implied_ev"] = dataframe.apply(lambda row: row["implied_equity_value"] if pd.isna(row["implied_net_debt"]) else 
+                (row["implied_equity_value"] + row["implied_net_debt"] if pd.notna(row["implied_equity_value"]) else None), 
     axis=1)
    
 
