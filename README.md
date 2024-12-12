@@ -14,8 +14,10 @@ The goal of this project is to automate a mind-numbing and time intensive proces
 
 In order to maximize the accessibility and manipulability of the data, we decided to append the data to a table within a SQL Postgres database on Google Cloud, as well as return an Excel file. Because this information is used to inform financial decisions, we prioritized accuracy and ease of access to citations by making links accessible in a connected table. 
 # Methodology
+
 ## Overview
 ![](images/modelgraph.png)
+
 ## Data Gathering
 The original Investment Banking information sheet we wanted to recreate had these fields: 
 
@@ -37,8 +39,35 @@ We found that Perplexity wouldn't get bogged down when we gave more specific inf
 We create the additional columns through direct calculation in Python and add them to the dataframe. Even with some more refinement of the prompts, Perplexity was still unable to return several data fields, so we continued with our original plan of calculating them. After that step, we override the dataframe's row names with the row names from an Excel file, just as an extra quality check to make sure the data is compatible with the SQL database tables. We added this step so the tables always agreed with each other and even if a specific value wasn't able to be calculated we could still have all the information in one place. We add an id for each deal, then add it to the database. 
 ![](images/sqldb.png)
 
-You might notice that the url and deal tables rows do not match. You would do well to remember that we calculated some of the data in Python, and thus, that data's source is the same as the data that was used to calculate it. The link table allows each piece of information to be verified, or for null values to be filled in, because Perplexity is better at giving links than data.
+You might notice that the url and deal tables rows do not match. You would do well to remember that we calculated some of the data in Python, and thus, that data's source is the same as the data that was used to calculate it. The link table allows each piece of information to be verified, or for null values to be filled in, because Perplexity is better at giving links than data. 
 
+As a complement to the database we produce an Excel file for each transaction, with a sheet for data along with a sheet for the associated sources. 
+
+# Findings
+After running 1000 companies through, we found that the most common null value was INSERT HERE AFTER WE RUN 1000 companies
+I WILL MAKE A GRAPH OF THIS
+
+# Limitations
+
+## 100% Data Accuracy
+While even a human filling out this sort of sheet would have errors, the fact that they can take responsibility for those errors means they avoid a judgment on their capability, and can chalk that error up to a momentary defect. While most variables that are returned, are returned accurately, if a decision is to be made, it is vital that every value is accurate. This creates a paradox which could hypothetically undo the time-saving effects of our project: every value might be wrong, and thus must be double checked by someone or something else. We are confident that this project provides a robust framework that can be built upon to ensure higher data accuracy, but the fact remains that we cannot ever be fully confident that any one output is correct.
+
+## Obscure Deals
+Smaller deals have less publicly available information, and Perplexity has a higher chance of not returning values for a given deal if it cannot cross reference a specific fact across several sources. Some smaller deals might only release their information to a website that has protection against AI crawlers. 
+
+## Company Names
+Because the user enters company names and Perplexity is able to handle a wide range of name variants, the company names in the database will be very unstandardized, which could cause some trouble in accessing them later. Particularly when users enter one deal at a time rather than loop through a csv of deals, there is no record of how specifically they chose to enter the name of each company, which could cause some consternation when attempted to access data at a later time. However, most banking applications for our project would have a banker pull deals from an assigned sheet, which could later be used to dig up any specific deal's data. 
+
+# Extensions for Future Improvement
+
+## Choice of LLM
+Due to the fact that we are students and not Investment Bankers, we decided not to not do countless pro searches within Perplexity as we populated our database. We have found that using a more costly version of Perplexity is able to provide data with far fewer null values. We tried to get our prompts and system to work well without accessing Perplexity's full strength. If we were to do this in a professional setting, we would simply make the choice to do all of these same steps but with a better version of Perplexity, thus saving even more time. 
+
+## Verification
+Our project's credibility would be greatly increased if we cross-referenced our data from Perplexity with data from Factset or some other reliable database. While some of the fields we gather could not be found within a database, it would be helpful to gather data from one of these reliable sources first then patch Perplexity data on top of that.
+
+## Data Interaction Dashboard
+While we are aiming to produce accurate data, the reality of mistakes and null values make a manual data interaction dashboard appealing. It could return the missing fields, and the human banker could fill them out. Bankers could also benefit from the ability to override and replace a field within the database if they found that a value was wrong. 
 
 
 Requirements for reporting your analysis:
