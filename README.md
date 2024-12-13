@@ -49,6 +49,8 @@ After running many companies through, the biggest areas of error became apparent
 
 ![](images/null.png)
 
+We found that for most other values, we had a much higher rate of return, and that Perplexity's data was quite accurate when it was actually confident enough to give it. The short deal description, business description, and main rationale were all very relevant and accurate. 
+
 
 # Limitations
 
