@@ -17,9 +17,6 @@ The goal of this project is to automate a mind-numbing and time intensive proces
 In order to maximize the accessibility and manipulability of the data, we decided to append the data to a table within a SQL Postgres database on Google Cloud, as well as return an Excel file. Because this information is used to inform financial decisions, we prioritized accuracy and ease of access to citations by making links accessible in a connected table. 
 # Methodology
 
-## Overview
-![](images/flowchartmd1.png)
-
 ## Data Gathering
 The original Investment Banking information sheet we wanted to recreate had these fields: 
 
@@ -32,7 +29,9 @@ We did some research and switched over to a Perplexity API. Perplexity is specif
 
 While Perplexity could return most of the data effectively, we recognized that it would be nearly impossible to always get accurate data or even data at all for any specific value. The fact that Perplexity could become confused or even refuse to return a specific value meant that we had to allow some more room for human intervention, both for filling in missing values and verifying fishy values. As we narrowed down our prompts we began to trust Perplexity's data, and most of our problems came from Perplexity being hesitant to put down anything it wasn't exceedingly sure of. For filling in those fields that Perplexity didn't feel comfortable giving, we added a link table with the source for each variable. While the AI didn't always return a value, it consistently gave a relevant link, even for fields it couldnt fully fill out.  
 
+
 ## Structure
+![](images/flowchartmd1.png)
 We created a Streamlit dashboard where the user entered the company names of the companies involved in the deal. If the deal had already been entered in the deal database, the information would be returned to the user directly in Streamlit. If the deal does not return, the user can either run Final.py and and enter company names directly (mode 1), or loop Final.py through an Excel file with a large list of deals (mode 2). The two company names are then pushed into Perplexity alongside a series of unique prompts from an Excel file. Along side the unique prompt for each variable, we listed the data type we wanted Perplexity to return the information as.
 
 We found that Perplexity wouldn't get bogged down when we gave more specific information, but rather, that it was quite good at honing down its search. We struggled with a majority of null values early on, but through careful consideration and lengthening of the prompts we cut down on these. Perplexity returns a Json, which we then clean and turn into a Pandas dataframe. This dataframe has two tables with the same columns, one table with the data, and the other with the corresponding URL from which the data was derived. 
