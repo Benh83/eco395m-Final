@@ -12,6 +12,17 @@ from Clean_Data import (
 )
 from dotenv import load_dotenv
 
+def clean_company_name(name):
+    """
+    Cleans company names by removing unwanted parts like 'Inc.', 'Public Limited Company', 'LP', etc.
+    """
+    patterns = [
+        r'\s+Inc\.?', r'\s+L\.?P\.?', r'\s+Co\.?', r'\s+Public Limited Company', r'\s*\(.*?\)', r'[.,]'
+    ]
+    for pattern in patterns:
+        name = re.sub(pattern, '', name, flags=re.IGNORECASE).strip()
+    return name
+
 engine = create_db_engine()
 create_tables(engine)
 
