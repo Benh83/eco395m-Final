@@ -1,5 +1,5 @@
 
-# Automating the Investment Banking Process
+# Automating Investment Banking M&A Data Collection
 ## Group Members
 Matias Ibarburu
 
