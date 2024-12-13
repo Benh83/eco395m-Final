@@ -84,7 +84,7 @@ def append_deal_to_database(engine, deals_df, urls_df):
         deals_df.to_sql("deals", con=connection, if_exists="append", index=False)
 
         # Get the id of the newly inserted deal
-        result = connection.execute("SELECT lastval()")
+        result = connection.execute(text("""SELECT lastval()"""))
         deal_id = result.scalar()
 
         # Add deal_id to the urls_df
