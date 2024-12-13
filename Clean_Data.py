@@ -13,9 +13,9 @@ def clean_values(data):
 def clean_urls(data):
     mf_url = pd.DataFrame(columns=['Buyer', 'Target'])
     for i in data.keys():
-        a = data[i]
+        a = data.get(i)
         akey = list(a.keys())
-        mf_url.loc[0, i] = a[akey[1]]
+        mf_url.loc[0, i] = a.get(akey[1])
     return mf_url
     
 def clean_column_names(dataframe):
