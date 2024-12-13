@@ -1,6 +1,6 @@
 
 # Automating the Investment Banking Process
-# Group Members
+## Group Members
 Matias Ibarburu
 
 Vighnesh Avadhanam
