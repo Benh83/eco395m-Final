@@ -45,8 +45,9 @@ You might notice that the url and deal tables rows do not match. You would do we
 As a complement to the database we produce an Excel file for each transaction, with a sheet for data along with a sheet for the associated sources. Any given deal that is entered into Final.py can accessed on streamlit, queried from the SQL database, or viewed as an Excel file.
 
 # Findings
-After running 100 companies through, the biggest areas of error became apparent.
-I WILL MAKE A GRAPH OF THIS
+After running many companies through, the biggest areas of error became apparent. Premium, Implied Net Debt, yearly Revenue, Ebitda, and Ev Sales all did not come up consistently. The first reason for this was that the data for these values was not as present online, particularly in Perplexity's searches related to M&A deals. The second problem with these values was that they were usually calculated rather than found, meaning that a higher version of Perplexity could better approach the additional step of calculation.
+![](images/null.png)
+
 
 # Limitations
 
