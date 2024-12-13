@@ -5,3 +5,4 @@ openai
 beautifulsoup4==4.10.0
 markdown
 xlrd
+xlsxwriter
