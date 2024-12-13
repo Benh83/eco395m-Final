@@ -46,6 +46,7 @@ As a complement to the database we produce an Excel file for each transaction, w
 
 # Findings
 After running many companies through, the biggest areas of error became apparent. Premium, Implied Net Debt, yearly Revenue, Ebitda, and Ev Sales all did not come up consistently. The first reason for this was that the data for these values was not as present online, particularly in Perplexity's searches related to M&A deals. The second problem with these values was that they were usually calculated rather than found, meaning that a higher version of Perplexity could better approach the additional step of calculation.
+
 ![](images/null.png)
 
 
@@ -94,23 +95,3 @@ Put an Excel file of deals you want to run into your deals file, then run Final.
 ## Database
 If you have a database, any deals you enter will be added to it, and you can access them through the Streamlit dashboard.
 To access streamlit application, run "streamlit.py" using "streamlit run streamlit.py". Streamlit requires secrets.toml which stores Postgres credentials in order to connect with database. Secrets.toml is to be stored in a folder called .streamlit.
-
-
-
-
-Requirements for reporting your analysis:
-
-The goal of the analysis is must be clearly articulated
-The report must include your methodology
-The report must include a description of your project and its findings (or lack of findings)
-Your findings (or non-findings) must be clearly documented
-Your findings must be supported by your analysis
-The limitations of the analysis must be clearly outlined
-Extensions of your analysis or areas for more research must be included in your report
-You should not include analysis, plots, discoveries, that aren’t directly related to your findings – you can put them as an appendix in another file if you like
-Requirements for reporting about the data:
-
-Source(s) of dataset(s) must be clearly documented
-Data collection methods must be understood and clearly documented. You should read and summarize the documentation of the data, make sure that you understand and document all columns/features that are relevant to your analysis. You should understand and summarize what isn’t in the data too.
-Limitations of the data must be clearly outlined
-A discussion of extensions of data that would be required to improve the analysis should be included
