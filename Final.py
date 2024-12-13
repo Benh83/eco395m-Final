@@ -1,10 +1,9 @@
 import os
-import json
 import pandas as pd
 from aiscrape import get_Data
 from tosql import create_tables,create_db_engine,append_deal_to_database
 from Clean_Data import enterprise_value,ratios,clean_column_names,clean_values,clean_urls,cleaning
-
+from dotenv import load_dotenv
 engine=create_db_engine()
 create_tables(engine)
 
@@ -17,7 +16,7 @@ if mode == "1":
     targets_buyers = [(Target, Buyer)]
 elif mode == "2":
     # File processing mode
-    file_path = os.path.join("data", "Top-100 deals.xls")
+    file_path = os.path.join("setup", "Top-100 deals.xls")
     deals_df = pd.read_excel(file_path)
     targets_buyers = deals_df[["Target/Issuer", "Buyers/Investors"]].values.tolist()
 else:

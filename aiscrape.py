@@ -1,4 +1,3 @@
-import dotenv
 import os 
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -6,8 +5,6 @@ from bs4 import BeautifulSoup
 import markdown
 import json
 import pandas as pd
-
-CACHE_DIR = ".cachedir"
 
 
 def get_Content():
@@ -28,7 +25,7 @@ def get_JSON(content):
 
 
 def run_Perplexity(CONTENT,PROMPT):
-    dotenv.load_dotenv() 
+    load_dotenv() 
     PERPLEXITY_API_KEY = os.environ["PERPLEXITY_API_KEY"]
     client = OpenAI(api_key=PERPLEXITY_API_KEY, base_url="https://api.perplexity.ai")
     messages = [

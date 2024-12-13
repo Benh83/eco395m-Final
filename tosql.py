@@ -1,11 +1,9 @@
 import os
-import dotenv
 import pandas as pd
 from sqlalchemy import create_engine,text
 from dotenv import load_dotenv
 
 # Load environment variables from final.env
-load_dotenv('final.env')
 
 def create_tables(engine):
     with engine.connect() as connection:
@@ -121,7 +119,7 @@ def append_urls_to_database(engine,urls_df):
 
 def create_db_engine():
     # Load environment variables
-    dotenv.load_dotenv() 
+    load_dotenv() 
 
     # Get database connection parameters from environment variables
     db_host = os.environ['DB_HOST']

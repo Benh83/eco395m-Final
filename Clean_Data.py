@@ -1,7 +1,6 @@
 import pandas as pd
 import os
 
-pd.set_option('display.max_columns', None) 
 
 def clean_column_names(dataframe): 
     IN_PATH = os.path.join('setup', 'headers.xlsx')
