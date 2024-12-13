@@ -21,7 +21,7 @@ In order to maximize the accessibility and manipulability of the data, we decide
 ## Data Gathering
 The original Investment Banking information sheet we wanted to recreate had these fields: 
 
-![](images/dealfilemd1.png)
+![](images/dealfilemd.png)
 
 
 We were faced with the fact that the information needed to fill out these fields would encompass many different types of data, and we would also have to carefully engineer prompts so that the AI returned something our functions could automatically parse. The information is all publicly available, but must be gathered from a combination of news sources and company reports. Because of this unique combination of data, we first chose to approach the problem using a ChatGPT API. ChatGPT responded remarkably well to our prompts when we input them in the web interface directly, however, when we tried to do those same prompts through the API the quality fell of dramatically. Additionally, ChatGPT has some difficulty returning valid links, which would have made our reference table difficult.
