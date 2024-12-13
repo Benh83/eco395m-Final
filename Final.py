@@ -1,28 +1,14 @@
-import re
 import os
 import pandas as pd
 from aiscrape import get_Data
 from tosql import create_tables, create_db_engine, append_deal_to_database
 from Clean_Data import (
-    enterprise_value,
-    ratios,
     clean_column_names,
     clean_values,
     clean_urls,
     cleaning,
 )
-from dotenv import load_dotenv
 
-def clean_company_name(name):
-    """
-    Cleans company names by removing unwanted parts like 'Inc.', 'Public Limited Company', 'LP', etc.
-    """
-    patterns = [
-        r'\s+Inc\.?', r'\s+L\.?P\.?', r'\s+Co\.?', r'\s+Public Limited Company', r'\s*\(.*?\)', r'[.,]'
-    ]
-    for pattern in patterns:
-        name = re.sub(pattern, '', name, flags=re.IGNORECASE).strip()
-    return name
 
 engine = create_db_engine()
 create_tables(engine)
@@ -60,7 +46,7 @@ for Target, Buyer in targets_buyers:
     found = "yes"
     if len(sql_values) > 1:
         print("Possible results \n")
-        print(sql_results["id", "buyer", "seller"])
+        print(sql_values["id", "buyer", "seller"])
         found = input("Is the deal you are looking for there?(yes or no):")
         while found != "yes" and found != "no":
             found = input(
