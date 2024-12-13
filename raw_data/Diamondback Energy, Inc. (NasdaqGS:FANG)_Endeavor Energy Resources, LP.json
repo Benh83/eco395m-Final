@@ -1,0 +1,82 @@
+{
+    "Buyer": {
+        "Buyer": "Diamondback Energy, Inc. (NasdaqGS:FANG)",
+        "URL": null
+    },
+    "Target": {
+        "Target": "Endeavor Energy Resources, LP",
+        "URL": null
+    },
+    "Date announced": {
+        "Date announced": "02/11/2024",
+        "Full URL": "https://www.marketscreener.com/quote/stock/BLACKROCK-INC-176512022/news/Diamondback-Energy-Inc-entered-into-a-definitive-merger-agreement-to-acquire-Endeavor-Energy-Resou-45932353/"
+    },
+    "Date closed": {
+        "Date closed": "09/10/2024",
+        "Full URL": "https://www.globenewswire.com/news-release/2024/09/10/2943746/22886/en/Diamondback-Energy-Inc-Closes-Merger-with-Endeavor-Energy-Resources-L-P.html"
+    },
+    "Industry of Target (1 or 2 words maximum)": {
+        "Industry of Target": "Oil & Gas",
+        "Full URL": "https://en.wikipedia.org/wiki/Endeavor_Energy_Resources"
+    },
+    "Acquired percentage of the business": {
+        "Acquired percentage of the business": "39.5%",
+        "Full URL": "https://www.offshore-technology.com/news/diamondback-endeavor-merger-complete/"
+    },
+    "Private or public deal? (return 1 word - either public or private)": {
+        "deal_type": "public",
+        "url": "https://www.globenewswire.com/news-release/2024/09/10/2943746/22886/en/Diamondback-Energy-Inc-Closes-Merger-with-Endeavor-Energy-Resources-L-P.html"
+    },
+    "Deal size, mln $": {
+        "Deal size, mln $": 26000.0,
+        "full URL": "https://www.globenewswire.com/news-release/2024/02/12/2827353/22886/en/Diamondback-Energy-Inc-and-Endeavor-Energy-Resources-L-P-to-Merge-to-Create-a-Premier-Permian-Independent-Oil-and-Gas-Company.html"
+    },
+    "Premium (one-day prior the announcement)": {
+        "Premium (one-day prior the announcement)": null,
+        "full URL": "https://www.globenewswire.com/news-release/2024/09/10/2943746/22886/en/Diamondback-Energy-Inc-Closes-Merger-with-Endeavor-Energy-Resources-L-P.html"
+    },
+    "Implied equity value (capitalization of target company - price of one share multiplied by number of target\u2019s shares on the moment of deal announcement), mln $": {
+        "Implied equity value (capitalization of target company)": 26.0,
+        "URL": "https://www.velaw.com/news/diamondback-energy-inc-and-endeavor-energy-resources-l-p-to-merge-to-create-a-premier-permian-independent-oil-and-gas-company/"
+    },
+    "Implied Net Debt (preferrably taken from last balance sheet prior to the deal, calculated as target company's total debt minus cash), mln $": {
+        "Implied Net Debt": 18.0,
+        "URL": "https://www.globenewswire.com/news-release/2024/02/12/2827353/22886/en/Diamondback-Energy-Inc-and-Endeavor-Energy-Resources-L-P-to-Merge-to-Create-a-Premier-Permian-Independent-Oil-and-Gas-Company.html"
+    },
+    "Form of consideration (return either all-cash, all-stock, all-debt, mixture (in this case return )  ": {
+        "Form of consideration": "mixture",
+        "Full URL": "https://www.globenewswire.com/news-release/2024/02/12/2827353/22886/en/Diamondback-Energy-Inc-and-Endeavor-Energy-Resources-L-P-to-Merge-to-Create-a-Premier-Permian-Independent-Oil-and-Gas-Company.html"
+    },
+    "Short deal description (maximum 125 symbols)": {
+        "Short deal description": "Diamondback Energy, Inc. completed a $26 billion merger with Endeavor Energy Resources, LP, creating a leading operator in the Permian Basin with a combined workforce of over 1,200 and assets encompassing around 838,000 net acres.",
+        "Full URL": "https://www.globenewswire.com/news-release/2024/09/10/2943746/22886/en/Diamondback-Energy-Inc-Closes-Merger-with-Endeavor-Energy-Resources-L-P.html"
+    },
+    "Revenue for the full year of the announcement date (if no information, take the revenue for the year which preceeded the announcement date), mln $": {
+        "Revenue": null,
+        "URL": "https://www.globenewswire.com/news-release/2024/09/10/2943746/22886/en/Diamondback-Energy-Inc-Closes-Merger-with-Endeavor-Energy-Resources-L-P.html"
+    },
+    "EBITDA (calculated as operating profit plus depreciation) for the full year of the announcement date (if no information, take the revenue for the year which preceeded the announcement date),mln $": {
+        "EBITDA": null,
+        "URL": "https://www.globenewswire.com/news-release/2024/09/10/2943746/22886/en/Diamondback-Energy-Inc-Closes-Merger-with-Endeavor-Energy-Resources-L-P.html"
+    },
+    "Short Business description of target company (maximum 125 symbols)": {
+        "short_business_description": "Endeavor Energy Resources is a privately-held hydrocarbon exploration and production company based in Midland, Texas, and one of the largest private oil producers in the Lower 48.",
+        "full_url": "https://en.wikipedia.org/wiki/Endeavor_Energy_Resources"
+    },
+    "Advisor to Target (seller) company (if several advisors were on the deal, return all known)": {
+        "Advisor to Target (seller) company": "None found",
+        "Full URL": "https://www.globenewswire.com/news-release/2024/09/10/2943746/22886/en/Diamondback-Energy-Inc-Closes-Merger-with-Endeavor-Energy-Resources-L-P.html"
+    },
+    "Advisor to Buyer (acquirer) (if several advisors were on the deal, return all known)": {
+        "Advisor to Buyer": "None",
+        "Full URL": "https://www.globenewswire.com/news-release/2024/09/10/2943746/22886/en/Diamondback-Energy-Inc-Closes-Merger-with-Endeavor-Energy-Resources-L-P.html"
+    },
+    "Accretive or Dilutive deal": {
+        "deal_type": "accretive",
+        "url": "https://www.globenewswire.com/news-release/2024/09/10/2943746/22886/en/Diamondback-Energy-Inc-Closes-Merger-with-Endeavor-Energy-Resources-L-P.html"
+    },
+    "Main rationale (why the acquirer purchased the target? - (maximum 125 symbols))": {
+        "Main rationale": "To create a premier Permian independent oil and gas company, expanding Diamondback's high-quality inventory in the Permian Basin and enhancing its operational capabilities and long-term success.",
+        "URL": "https://www.globenewswire.com/news-release/2024/02/12/2827353/22886/en/Diamondback-Energy-Inc-and-Endeavor-Energy-Resources-L-P-to-Merge-to-Create-a-Premier-Permian-Independent-Oil-and-Gas-Company.html"
+    }
+}
