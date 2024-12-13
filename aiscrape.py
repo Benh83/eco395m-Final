@@ -59,4 +59,7 @@ def get_Data(Buyer, Target):
         JSON_data = get_JSON(perplexity_content)
         JSON_n = {variable: JSON_data}
         extracted_data.update(JSON_n)
+    with open(os.path.join("raw_data", f"{Buyer}_{Target}.json"), "w") as json_file:
+        json.dump(extracted_data, json_file, indent=4)
+
     return extracted_data

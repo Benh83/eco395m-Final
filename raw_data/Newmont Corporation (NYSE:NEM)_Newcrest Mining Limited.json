@@ -1,0 +1,82 @@
+{
+    "Buyer": {
+        "Buyer": "Newmont Corporation (NYSE:NEM)",
+        "URL": null
+    },
+    "Target": {
+        "Target": "Newcrest Mining Limited",
+        "URL": null
+    },
+    "Date announced": {
+        "Date announced": "02/06/2023",
+        "Full URL": "https://www.mining.com/mammoth-gold-miner-in-the-making-after-newmonts-17bn-bid-for-newcrest/"
+    },
+    "Date closed": {
+        "Date closed": "10/18/2023",
+        "Full URL": "https://www.mining-technology.com/news/newmont-closes-buyout-newcrest/"
+    },
+    "Industry of Target (1 or 2 words maximum)": {
+        "Industry of Target": "Gold Mining",
+        "Full URL": "https://www.ibisworld.com/au/company/newcrest-mining-limited/811/"
+    },
+    "Acquired percentage of the business as number": {
+        "Acquired percentage of the business": 92.63,
+        "Full URL": "https://www.mining-technology.com/news/newmont-closes-buyout-newcrest/"
+    },
+    "Private or public deal? (return 1 word - either public or private)": {
+        "deal_type": "public",
+        "url": "https://www.mining-technology.com/news/newmont-closes-buyout-newcrest/"
+    },
+    "Deal size, mln $": {
+        "Deal size, mln $": 16800.0,
+        "full URL": "https://www.mining-technology.com/news/newmont-closes-buyout-newcrest/"
+    },
+    "Premium (one-day prior the announcement)": {
+        "Premium (one-day prior the announcement)": null,
+        "Full URL": "https://www.mining-technology.com/news/newmont-closes-buyout-newcrest/"
+    },
+    "Implied equity value (capitalization of target company - price of one share multiplied by number of target\u2019s shares on the moment of deal announcement), mln $": {
+        "Implied equity value (capitalization of target company)": 16.8,
+        "URL": "https://www.mining-technology.com/news/newmont-closes-buyout-newcrest/"
+    },
+    "Implied Net Debt (preferrably taken from last balance sheet prior to the deal, calculated as target company's total debt minus cash), mln $": {
+        "Implied Net Debt": null,
+        "URL": "https://www.mining-technology.com/news/newmont-closes-buyout-newcrest/"
+    },
+    "Form of consideration (return either all-cash, all-stock, all-debt, mixture (in this case return )  ": {
+        "Form of consideration": "all-stock",
+        "URL": "https://www.mining-technology.com/news/newmont-closes-buyout-newcrest/"
+    },
+    "Short deal description (maximum 125 symbols)": {
+        "Short deal description": "Newmont Corporation acquired Newcrest Mining Limited for $16.8bn, forming the world\u2019s leading gold and copper company with a robust portfolio of Tier 1 assets and enhanced copper production.",
+        "Full URL": "https://www.mining-technology.com/news/newmont-closes-buyout-newcrest/"
+    },
+    "Revenue for the full year of the announcement date (if no information, take the revenue for the year which preceeded the announcement date), mln $": {
+        "Revenue": null,
+        "URL": "https://www.mining-technology.com/news/newmont-closes-buyout-newcrest/"
+    },
+    "EBITDA (calculated as operating profit plus depreciation) for the full year of the announcement date (if no information, take the revenue for the year which preceeded the announcement date),mln $": {
+        "EBITDA": null,
+        "URL": "https://www.mining-technology.com/news/newmont-closes-buyout-newcrest/"
+    },
+    "Short Business description of target company (maximum 125 symbols)": {
+        "short_business_description": "Newcrest Mining Limited is engaged in the exploration, development, mining, and sale of gold and gold/copper concentrate, operating mines across Australia, Indonesia, Papua New Guinea, and the Ivory Coast.",
+        "full_URL": "https://www.ibisworld.com/au/company/newcrest-mining-limited/811/"
+    },
+    "Advisor to Target (seller) company (if several advisors were on the deal, return all known)": {
+        "Advisor to Target (seller) company": null,
+        "Full URL": "https://www.mining-technology.com/news/newmont-closes-buyout-newcrest/"
+    },
+    "Advisor to Buyer (acquirer) (if several advisors were on the deal, return all known)": {
+        "Advisor to Buyer": null,
+        "Full URL": "https://www.mining-technology.com/news/newmont-closes-buyout-newcrest/"
+    },
+    "Accretive or Dilutive deal": {
+        "deal_type": "accretive",
+        "url": "https://www.mining-technology.com/news/newmont-closes-buyout-newcrest/"
+    },
+    "Main rationale (why the acquirer purchased the target? - (maximum 125 symbols))": {
+        "Main rationale": "Newmont acquired Newcrest to create the world's leading gold and copper company, consolidating a portfolio of Tier 1 assets, enhancing copper production, and unlocking strategic, operational, and sustainability-driven synergies in favorable mining jurisdictions.",
+        "URL": "https://www.newmont.com/blog-stories/blog-stories-details/2023/Newmonts-Acquisition-of-Newcrest-Creates-Leading-Portfolio-of-Gold-and-Copper-Assets/default.aspx"
+    }
+}

@@ -1,7 +1,23 @@
 import pandas as pd
 import os
 
+def clean_values(data):
+    mf_values = pd.DataFrame(columns=['Buyer', 'Target'])
+    for i in data.keys():
+        a = data[i]
+        akey = list(a.keys())
+        mf_values.loc[0, i] = a[akey[0]]
+    return mf_values
 
+
+def clean_urls(data):
+    mf_url = pd.DataFrame(columns=['Buyer', 'Target'])
+    for i in data.keys():
+        a = data[i]
+        akey = list(a.keys())
+        mf_url.loc[0, i] = a[akey[1]]
+    return mf_url
+    
 def clean_column_names(dataframe):
     IN_PATH = os.path.join("setup", "headers.xlsx")
     headers = pd.read_excel(IN_PATH)
@@ -33,7 +49,7 @@ def cleaning(dataframe):
                 dataframe.loc[0, col] = float(dataframe.loc[0, col].strip("%"))
 
             else:
-                dataframe[col] = pd.to_numeric(dataframe[col])
+                dataframe.loc[0,col] = float(dataframe.loc[0,col])
     dataframe["deal_size"] = dataframe["deal_size"] * 1000000
     dataframe["ly_revenue"] = dataframe["ly_revenue"] * 1000000
     dataframe["ly_ebitda"] = dataframe["ly_ebitda"] * 1000000
@@ -69,22 +85,7 @@ def ratios(dataframe):
     return dataframe
 
 
-def clean_values(data):
-    mf_values = pd.DataFrame()
-    for i in data.keys():
-        a = data[i]
-        akey = list(a.keys())
-        mf_values.loc[0, i] = a[akey[0]]
-    return mf_values
 
-
-def clean_urls(data):
-    mf_url = pd.DataFrame()
-    for i in data.keys():
-        a = data[i]
-        akey = list(a.keys())
-        mf_url.loc[0, i] = a[akey[1]]
-    return mf_url
 
 
 def enterprise_value(dataframe):
