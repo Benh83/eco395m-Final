@@ -16,7 +16,7 @@ In order to maximize the accessibility and manipulability of the data, we decide
 # Methodology
 
 ## Overview
-![](images/flowchartmd.png)
+![](images/flowchartmd1.png)
 
 ## Data Gathering
 The original Investment Banking information sheet we wanted to recreate had these fields: 
