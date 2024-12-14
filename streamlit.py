@@ -34,33 +34,49 @@ def run_app():
 
             # SQL query to get data from the 'deals' table
             deals_query = """
-            SELECT * FROM deals
-            WHERE LOWER(buyer) LIKE LOWER(%s) AND LOWER(target) LIKE LOWER(%s);
+            WITH ranked_deals AS (
+            SELECT *,
+            ROW_NUMBER() OVER (PARTITION BY LOWER(buyer), LOWER(target) ORDER BY id DESC) AS row_num
+            FROM deals
+            WHERE LOWER(buyer) LIKE LOWER(%s) AND LOWER(target) LIKE LOWER(%s))
+            SELECT * FROM ranked_deals
+            WHERE row_num = 1;
             """
 
             # SQL query to get data from the 'urls' table
             urls_query = """
-            SELECT * FROM urls
-            WHERE LOWER(buyer) LIKE LOWER(%s) AND LOWER(target) LIKE LOWER(%s);
+            WITH ranked_urls AS (
+            SELECT *,
+            ROW_NUMBER() OVER (PARTITION BY LOWER(buyer), LOWER(target) ORDER BY id DESC) AS row_num
+            FROM urls
+            WHERE LOWER(buyer) LIKE LOWER(%s) AND LOWER(target) LIKE LOWER(%s))
+            SELECT * FROM ranked_urls
+            WHERE row_num = 1
             """
 
             try:
                 # Converts SQL to dataframe
-                deals_df = pd.read_sql_query(deals_query, connection, params=("%" + buyer_input + "%", "%" + target_input + "%"))
+                deals_df = pd.read_sql_query(
+                    deals_query,
+                    connection,
+                    params=("%" + buyer_input + "%", "%" + target_input + "%"),
+                )
                 if not deals_df.empty:
                     st.write("Deals Data: ")
                     st.write(deals_df)
                 else:
                     st.warning("No deals found ")
-                
-                urls_df = pd.read_sql_query(urls_query, connection,params=("%" + buyer_input + "%", "%" + target_input + "%") )
+
+                urls_df = pd.read_sql_query(
+                    urls_query,
+                    connection,
+                    params=("%" + buyer_input + "%", "%" + target_input + "%"),
+                )
                 if not urls_df.empty:
                     st.write("URLs Data: ")
                     st.write(urls_df)
                 else:
                     st.warning("No URLs found")
-
-                
 
             except Exception as query_error:
                 st.error(f"Error querying the database: {query_error}")
