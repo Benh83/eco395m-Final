@@ -1,0 +1,82 @@
+{
+    "Buyer": {
+        "Buyer": "Mag Mile Capital",
+        "URL": null
+    },
+    "Target": {
+        "Target": "Myson",
+        "URL": null
+    },
+    "Date announced": {
+        "Date announced": "04/06/2023",
+        "Full URL": "https://www.globenewswire.com/news-release/2023/04/06/2642855/0/en/MAG-MILE-CAPITAL-MERGES-WITH-MYSON-BECOMES-PUBLICLY-TRADED-COMPANY.html"
+    },
+    "Date closed": {
+        "Date closed": "04/10/2023",
+        "Full URL": "https://rebusinessonline.com/mag-mile-capital-merges-with-myson-becomes-publicly-traded-company/"
+    },
+    "Industry of Target (1 or 2 words maximum)": {
+        "Industry of Target": "Heating Materials",
+        "Full URL": "https://leadiq.com/c/myson/5a1d7f0424000024005a4174"
+    },
+    "Acquired percentage of the business as number": {
+        "Acquired percentage of the business": 88,
+        "URL": "https://www.commercialsearch.com/news/mag-mile-capital-goes-public-in-merger/"
+    },
+    "Private or public deal? (return 1 word - either public or private)": {
+        "deal_type": "public",
+        "url": "https://rebusinessonline.com/mag-mile-capital-merges-with-myson-becomes-publicly-traded-company/"
+    },
+    "Deal size, mln $": {
+        "Deal size, mln $": 4800.0,
+        "full URL": "https://in.marketscreener.com/quote/stock/MAG-MILE-CAPITAL-INC-120787510/news/Megamile-Capital-Inc-acquired-Myson-Inc-in-a-reverse-merger-transaction-for-4-8-billion-43458505/"
+    },
+    "Premium (one-day prior the announcement)": {
+        "Premium (one-day prior the announcement)": null,
+        "full URL": "https://rebusinessonline.com/mag-mile-capital-merges-with-myson-becomes-publicly-traded-company/"
+    },
+    "Implied equity value (capitalization of target company - price of one share multiplied by number of target\u2019s shares on the moment of deal announcement), mln $": {
+        "Implied equity value (capitalization of target company)": null,
+        "full URL": "https://www.commercialsearch.com/news/mag-mile-capital-goes-public-in-merger/"
+    },
+    "Implied Net Debt (preferrably taken from last balance sheet prior to the deal, calculated as target company's total debt minus cash), mln $": {
+        "Implied Net Debt": null,
+        "URL": "https://rebusinessonline.com/mag-mile-capital-merges-with-myson-becomes-publicly-traded-company/"
+    },
+    "Form of consideration (return either all-cash, all-stock, all-debt, mixture (in this case return )  ": {
+        "Form of consideration": "mixture",
+        "Full URL": "https://www.commercialsearch.com/news/mag-mile-capital-goes-public-in-merger/"
+    },
+    "Short deal description (maximum 125 symbols)": {
+        "Short deal description": "Mag Mile Capital, a Chicago-based commercial real estate mortgage banking firm, merged with Myson Inc., a publicly traded shell company, to create a new publicly traded entity, Mag Mile Capital Inc., enabling expansion and the launch of new technology and services.",
+        "Full URL": "https://rebusinessonline.com/mag-mile-capital-merges-with-myson-becomes-publicly-traded-company/"
+    },
+    "Revenue for the full year of the announcement date (if no information, take the revenue for the year which preceeded the announcement date), mln $": {
+        "Revenue": null,
+        "URL": "https://rebusinessonline.com/mag-mile-capital-merges-with-myson-becomes-publicly-traded-company/"
+    },
+    "EBITDA (calculated as operating profit plus depreciation) for the full year of the announcement date (if no information, take the revenue for the year which preceeded the announcement date),mln $": {
+        "EBITDA": null,
+        "URL": "https://rebusinessonline.com/mag-mile-capital-merges-with-myson-becomes-publicly-traded-company/"
+    },
+    "Short Business description of target company (maximum 125 symbols)": {
+        "short_business_description": "Myson is a leading supplier and manufacturer of heat emitters, offering a complete range of products and services for commercial and domestic heating applications, including radiators, underfloor heating, and technical support.",
+        "full_url": "https://leadiq.com/c/myson/5a1d7f0424000024005a4174"
+    },
+    "Advisor to Target (seller) company (if several advisors were on the deal, return all known)": {
+        "Advisor to Target (seller) company": null,
+        "Full URL": "https://www.commercialsearch.com/news/mag-mile-capital-goes-public-in-merger/"
+    },
+    "Advisor to Buyer (acquirer) (if several advisors were on the deal, return all known)": {
+        "Advisor to Buyer": null,
+        "Full URL": "https://rebusinessonline.com/mag-mile-capital-merges-with-myson-becomes-publicly-traded-company/"
+    },
+    "Accretive or Dilutive deal": {
+        "deal_type": "accretive",
+        "url": "https://www.commercialsearch.com/news/mag-mile-capital-goes-public-in-merger/"
+    },
+    "Main rationale (why the acquirer purchased the target? - (maximum 125 symbols))": {
+        "Main rationale": "To expand its business and expedite the process of going public, utilizing Myson as a publicly traded shell company to access liquidity and pursue further acquisitions and growth.",
+        "URL": "https://rebusinessonline.com/mag-mile-capital-merges-with-myson-becomes-publicly-traded-company/"
+    }
+}

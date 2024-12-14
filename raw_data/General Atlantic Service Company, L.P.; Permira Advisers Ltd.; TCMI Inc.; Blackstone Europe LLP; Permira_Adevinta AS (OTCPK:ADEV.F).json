@@ -1,0 +1,82 @@
+{
+    "Buyer": {
+        "Buyer": "General Atlantic Service Company, L.P.; Permira Advisers Ltd.; TCMI Inc.; Blackstone Europe LLP; Permira",
+        "URL": null
+    },
+    "Target": {
+        "Target": "Adevinta AS (OTCPK:ADEV.F)",
+        "URL": null
+    },
+    "Date announced": {
+        "Date announced": "11/21/2023",
+        "URL": "https://www.marketscreener.com/quote/stock/ADEVINTA-ASA-57085961/news/Permira-Advisers-Ltd-The-Blackstone-Group-International-Partners-LLP-General-Atlantic-Service-Com-45415760/"
+    },
+    "Date closed": {
+        "Date closed": null,
+        "Full URL": "https://www.marketscreener.com/quote/stock/ADEVINTA-ASA-57085961/news/Permira-Advisers-Ltd-The-Blackstone-Group-International-Partners-LLP-General-Atlantic-Service-Com-45415760/"
+    },
+    "Industry of Target (1 or 2 words maximum)": {
+        "Industry of Target": "Online Classifieds",
+        "Full URL": "https://adevinta.com/about-us/"
+    },
+    "Acquired percentage of the business as number": {
+        "Acquired percentage of the business": 44.0,
+        "Full URL": "https://adevinta.com/about-us/corporate-governance/statement-on-material-agreement/"
+    },
+    "Private or public deal? (return 1 word - either public or private)": {
+        "deal_type": "private",
+        "url": "https://www.marketscreener.com/quote/stock/ADEVINTA-ASA-57085961/news/Permira-Advisers-Ltd-The-Blackstone-Group-International-Partners-LLP-General-Atlantic-Service-Com-45415760/"
+    },
+    "Deal size, mln $": {
+        "Deal size, mln $": 141000.0,
+        "full URL": "https://www.marketscreener.com/quote/stock/ADEVINTA-ASA-57085961/news/Permira-Advisers-Ltd-The-Blackstone-Group-International-Partners-LLP-General-Atlantic-Service-Com-45415760/"
+    },
+    "Premium (one-day prior the announcement)": {
+        "Premium (one-day prior the announcement)": null,
+        "full URL": "https://www.marketscreener.com/quote/stock/ADEVINTA-ASA-57085961/news/Permira-Advisers-Ltd-The-Blackstone-Group-International-Partners-LLP-General-Atlantic-Service-Com-45415760/"
+    },
+    "Implied equity value (capitalization of target company - price of one share multiplied by number of target\u2019s shares on the moment of deal announcement), mln $": {
+        "Implied equity value (capitalization of target company)": 141000.0,
+        "full URL": "https://www.marketscreener.com/quote/stock/ADEVINTA-ASA-57085961/news/Permira-Advisers-Ltd-The-Blackstone-Group-International-Partners-LLP-General-Atlantic-Service-Com-45415760/"
+    },
+    "Implied Net Debt (preferrably taken from last balance sheet prior to the deal, calculated as target company's total debt minus cash), mln $": {
+        "Implied Net Debt": null,
+        "URL": "https://www.marketscreener.com/quote/stock/ADEVINTA-ASA-57085961/news/Permira-Advisers-Ltd-The-Blackstone-Group-International-Partners-LLP-General-Atlantic-Service-Com-45415760/"
+    },
+    "Form of consideration (return either all-cash, all-stock, all-debt, mixture (in this case return )  ": {
+        "Form of consideration": "mixture",
+        "Full URL": "https://www.marketscreener.com/quote/stock/ADEVINTA-ASA-57085961/news/Permira-Advisers-Ltd-The-Blackstone-Group-International-Partners-LLP-General-Atlantic-Service-Com-45415760/"
+    },
+    "Short deal description (maximum 125 symbols)": {
+        "Short deal description": "Permira Advisers Ltd., The Blackstone Group International Partners LLP, General Atlantic Service Company, L.P., and TCMI Inc. made an offer to acquire Adevinta ASA for NOK 141 billion, with eBay Inc. supporting the voluntary tender offer. The transaction involves a cash or depository receipts payment, subject to minimum tender and regulatory approvals, expected to close in Q2 2024.",
+        "Full URL": "https://www.marketscreener.com/quote/stock/ADEVINTA-ASA-57085961/news/Permira-Advisers-Ltd-The-Blackstone-Group-International-Partners-LLP-General-Atlantic-Service-Com-45415760/"
+    },
+    "Revenue for the full year of the announcement date (if no information, take the revenue for the year which preceeded the announcement date), mln $": {
+        "Revenue": null,
+        "URL": "https://www.marketscreener.com/quote/stock/ADEVINTA-ASA-57085961/news/Permira-Advisers-Ltd-The-Blackstone-Group-International-Partners-LLP-General-Atlantic-Service-Com-45415760/"
+    },
+    "EBITDA (calculated as operating profit plus depreciation) for the full year of the announcement date (if no information, take the revenue for the year which preceeded the announcement date),mln $": {
+        "EBITDA": null,
+        "URL": "https://www.marketscreener.com/quote/stock/ADEVINTA-ASA-57085961/news/Permira-Advisers-Ltd-The-Blackstone-Group-International-Partners-LLP-General-Atlantic-Service-Com-45415760/"
+    },
+    "Short Business description of target company (maximum 125 symbols)": {
+        "short_business_description": "Adevinta is a leading online classifieds group, operating digital marketplaces across Europe, Latin America, and North Africa, covering consumer goods, mobility, real estate, holiday rentals, and jobs.",
+        "full_URL": "https://adevinta.com/about-us/"
+    },
+    "Advisor to Target (seller) company (if several advisors were on the deal, return all known)": {
+        "Advisor to Target": "None found",
+        "Full URL": "https://www.marketscreener.com/quote/stock/ADEVINTA-ASA-57085961/news/Permira-Advisers-Ltd-The-Blackstone-Group-International-Partners-LLP-General-Atlantic-Service-Com-45415760/"
+    },
+    "Advisor to Buyer (acquirer) (if several advisors were on the deal, return all known)": {
+        "Advisor to Buyer": "No specific advisors mentioned for the buyers General Atlantic Service Company, L.P.; Permira Advisers Ltd.; TCMI Inc.; Blackstone Europe LLP in the context of this transaction.",
+        "Full URL": "https://www.marketscreener.com/quote/stock/ADEVINTA-ASA-57085961/news/Permira-Advisers-Ltd-The-Blackstone-Group-International-Partners-LLP-General-Atlantic-Service-Com-45415760/"
+    },
+    "Accretive or Dilutive deal": {
+        "deal_type": null,
+        "url": "https://www.marketscreener.com/quote/stock/ADEVINTA-ASA-57085961/news/Permira-Advisers-Ltd-The-Blackstone-Group-International-Partners-LLP-General-Atlantic-Service-Com-45415760/"
+    },
+    "Main rationale (why the acquirer purchased the target? - (maximum 125 symbols))": {
+        "Main rationale": "The acquisition of Adevinta ASA by Permira Advisers Ltd., The Blackstone Group International Partners LLP, General Atlantic Service Company, L.P., and TCMI Inc. is part of a strategic move to gain control over a leading online classifieds group, enhancing their portfolio in digital marketplaces and expanding their influence in sustainable commerce across Europe and beyond.",
+        "URL": "https://www.marketscreener.com/quote/stock/ADEVINTA-ASA-57085961/news/Permira-Advisers-Ltd-The-Blackstone-Group-International-Partners-LLP-General-Atlantic-Service-Com-45415760/"
+    }
+}

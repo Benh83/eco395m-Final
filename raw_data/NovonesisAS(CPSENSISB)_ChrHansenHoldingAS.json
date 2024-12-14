@@ -1,0 +1,82 @@
+{
+    "Buyer": {
+        "Buyer": "NovonesisAS(CPSENSISB)",
+        "URL": null
+    },
+    "Target": {
+        "Target": "ChrHansenHoldingAS",
+        "URL": null
+    },
+    "Date announced": {
+        "Date announced": "12/12/2022",
+        "Full URL": "https://www.mergersight.com/post/novozymes-12-3bn-acquisition-of-chr-hansen"
+    },
+    "Date closed": {
+        "Date closed": "03/29/2024",
+        "Full URL": "https://www.mergersight.com/post/novozymes-12-3bn-acquisition-of-chr-hansen"
+    },
+    "Industry of Target (1 or 2 words maximum)": {
+        "Industry of Target": "Bioscience",
+        "Full URL": "https://www.novonesis.com/en/about-us"
+    },
+    "Acquired percentage of the business (as number)": {
+        "Acquired percentage of the business": 78.02,
+        "Full URL": "https://www.mergersight.com/post/novozymes-12-3bn-acquisition-of-chr-hansen"
+    },
+    "Private or public deal? (return 1 word - either public or private)": {
+        "deal_type": "public",
+        "url": "https://www.mergersight.com/post/novozymes-12-3bn-acquisition-of-chr-hansen"
+    },
+    "Deal size,": {
+        "Deal size in million dollars": 12300.0,
+        "Full URL": "https://www.mergersight.com/post/novozymes-12-3bn-acquisition-of-chr-hansen"
+    },
+    "Premium (one-day prior the announcement)": {
+        "Premium (one-day prior the announcement)": "49%",
+        "Full URL": "https://www.mergersight.com/post/novozymes-12-3bn-acquisition-of-chr-hansen"
+    },
+    "Implied equity value (capitalization of target company - price of one share multiplied by number of target\u2019s shares on the moment of deal announcement),": {
+        "Implied Equity Value": 11.4,
+        "URL": "https://www.mergersight.com/post/novozymes-12-3bn-acquisition-of-chr-hansen"
+    },
+    "Implied Net Debt (preferrably taken from last balance sheet prior to the deal, calculated as target company's total debt minus cash),": {
+        "Implied Net Debt": null,
+        "URL": "https://www.mergersight.com/post/novozymes-12-3bn-acquisition-of-chr-hansen"
+    },
+    "Form of consideration (return either all-cash, all-stock, all-debt, mixture (in this case return )  ": {
+        "Form of consideration": "all-stock",
+        "Full URL": "https://www.mergersight.com/post/novozymes-12-3bn-acquisition-of-chr-hansen"
+    },
+    "Short deal description (maximum 125 symbols)": {
+        "Short deal description": "Novozymes A/S merged with Chr. Hansen Holding A/S to form Novonesis, a leading global biosolutions company, in an all-stock deal valued at $12.3 billion, aiming to create a global biosolutions leader focusing on enabling healthier lives through biological solutions.",
+        "Full URL": "https://www.mergersight.com/post/novozymes-12-3bn-acquisition-of-chr-hansen"
+    },
+    "Revenue of target company for the full year of the announcement date (if no information, take the revenue for the year which preceeded the announcement date),": {
+        "revenue": 3.5,
+        "url": "https://www.mergersight.com/post/novozymes-12-3bn-acquisition-of-chr-hansen"
+    },
+    "EBITDA of target company (calculated as operating profit plus depreciation) for the full year of the announcement date (if no information, take the revenue for the year which preceeded the announcement date),": {
+        "EBITDA": null,
+        "URL": "https://www.mergersight.com/post/novozymes-12-3bn-acquisition-of-chr-hansen"
+    },
+    "Short Business description of target company (maximum 125 symbols)": {
+        "short_business_description": "Chr. Hansen is a global bioscience company developing and producing microbial solutions for the food, beverages, nutritional, pharmaceutical, and agricultural industries.",
+        "full_url": "https://www.chr-hansen.com/en/investors/business"
+    },
+    "Advisor to Target (seller) company (if several advisors were on the deal, return all known)": {
+        "Advisor to Target (seller) company": "Goldman Sachs (Financial), Gorrissen Federspiel Advokatpartnerselskab and Baker & McKenzie LLP (Legal)",
+        "Full URL": "https://www.mergersight.com/post/novozymes-12-3bn-acquisition-of-chr-hansen"
+    },
+    "Advisor to Buyer (acquirer) (if several advisors were on the deal, return all known)": {
+        "Advisor to Buyer": "Gordon Dyal & Co., Danske Bank A/S, Nordea Danmark (Financial), Plesner Advokatpartnerselskab, Linklaters, Davis Polk & Wardwell (Legal)",
+        "URL": "https://www.mergersight.com/post/novozymes-12-3bn-acquisition-of-chr-hansen"
+    },
+    "Accretive or Dilutive deal": {
+        "deal_type": "accretive",
+        "url": "https://www.mergersight.com/post/novozymes-12-3bn-acquisition-of-chr-hansen"
+    },
+    "Main rationale (why the acquirer purchased the target? - (maximum 125 symbols))": {
+        "Main rationale": "The acquisition combines the expertise of Novozymes and Chr. Hansen to create a leading global biosolutions partner, focusing on enabling healthier lives through the development of biological solutions in the food industry, leveraging their complementary services in microbials and enzyme development.",
+        "URL": "https://www.mergersight.com/post/novozymes-12-3bn-acquisition-of-chr-hansen"
+    }
+}
