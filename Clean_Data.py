@@ -1,7 +1,23 @@
 import pandas as pd
 import os
 
+def clean_values(data):
+    mf_values = pd.DataFrame(columns=['Buyer', 'Target'])
+    for i in data.keys():
+        a = data[i]
+        akey = list(a.keys())
+        mf_values.loc[0, i] = a[akey[0]]
+    return mf_values
 
+
+def clean_urls(data):
+    mf_url = pd.DataFrame(columns=['Buyer', 'Target'])
+    for i in data.keys():
+        a = data[i]
+        akey = list(a.keys())
+        mf_url.loc[0, i] = a[akey[1]]
+    return mf_url
+    
 def clean_column_names(dataframe):
     IN_PATH = os.path.join("setup", "headers.xlsx")
     headers = pd.read_excel(IN_PATH)
@@ -11,9 +27,38 @@ def clean_column_names(dataframe):
 
 def cleaning(dataframe):
     dataframe=clean_column_names(dataframe)
-    dataframe["date_announced"] = pd.to_datetime(
-        dataframe["date_announced"], format="%m/%d/%Y"
+    #Clean Dates depending on what format they come in. 
+    if dataframe["date_announced"].isna()[0]:
+        dataframe.loc[0,"date_announced"] = pd.to_datetime(
+            dataframe.loc[0,"date_announced"], format="%m/%d/%Y"
     )
+    
+    elif dataframe.loc[0,"date_announced"].count("/")==2 : 
+        dataframe.loc[0,"date_announced"] = pd.to_datetime(
+            dataframe.loc[0,"date_announced"], format="%m/%d/%Y"
+    )
+    elif dataframe.loc[0,"date_announced"].count("/")==1:
+        dataframe.loc[0,"date_announced"]=pd.to_datetime(dataframe.loc[0,"date_announced"].split("/")[0]+"/01/"+(dataframe.loc[0,"date_announced"].split("/"))[1],  format="%m/%d/%Y")
+    else:
+        dataframe.loc[0,"date_announced"]=pd.to_datetime(None,  format="%m/%d/%Y")
+
+
+    if dataframe["date_closed"].isna()[0]:
+        dataframe.loc[0,"date_closed"] = pd.to_datetime(
+            dataframe.loc[0,"date_closed"], format="%m/%d/%Y"
+    )
+    
+    elif dataframe.loc[0,"date_closed"].count("/")==2 : 
+        dataframe.loc[0,"date_closed"] = pd.to_datetime(
+            dataframe.loc[0,"date_closed"], format="%m/%d/%Y"
+    )
+    elif dataframe.loc[0,"date_closed"].count("/")==1:
+        dataframe.loc[0,"date_closed"]=pd.to_datetime(dataframe.loc[0,"date_closed"].split("/")[0]+"/01/"+(dataframe.loc[0,"date_closed"].split("/"))[1],  format="%m/%d/%Y")
+    else:
+        dataframe.loc[0,"date_closed"]=pd.to_datetime(None,  format="%m/%d/%Y")
+
+
+
     dataframe["date_closed"] = pd.to_datetime(
         dataframe["date_closed"], format="%m/%d/%Y"
     )
@@ -33,7 +78,7 @@ def cleaning(dataframe):
                 dataframe.loc[0, col] = float(dataframe.loc[0, col].strip("%"))
 
             else:
-                dataframe[col] = pd.to_numeric(dataframe[col])
+                dataframe.loc[0,col] = float(dataframe.loc[0,col])
     dataframe["deal_size"] = dataframe["deal_size"] * 1000000
     dataframe["ly_revenue"] = dataframe["ly_revenue"] * 1000000
     dataframe["ly_ebitda"] = dataframe["ly_ebitda"] * 1000000
@@ -69,22 +114,7 @@ def ratios(dataframe):
     return dataframe
 
 
-def clean_values(data):
-    mf_values = pd.DataFrame()
-    for i in data.keys():
-        a = data[i]
-        akey = list(a.keys())
-        mf_values.loc[0, i] = a[akey[0]]
-    return mf_values
 
-
-def clean_urls(data):
-    mf_url = pd.DataFrame()
-    for i in data.keys():
-        a = data[i]
-        akey = list(a.keys())
-        mf_url.loc[0, i] = a[akey[1]]
-    return mf_url
 
 
 def enterprise_value(dataframe):
