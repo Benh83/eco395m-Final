@@ -35,47 +35,32 @@ def run_app():
             # SQL query to get data from the 'deals' table
             deals_query = """
             SELECT * FROM deals
-            WHERE buyer = %s AND target = %s;
+            WHERE LOWER(buyer) LIKE LOWER(%s) AND LOWER(target) LIKE LOWER(%s);
             """
 
             # SQL query to get data from the 'urls' table
             urls_query = """
             SELECT * FROM urls
-            WHERE buyer = %s AND target = %s;
+            WHERE LOWER(buyer) LIKE LOWER(%s) AND LOWER(target) LIKE LOWER(%s);
             """
 
             try:
-                # Execute the query for 'deals' table
-                with connection.cursor() as cursor:
-                    # Query for deals
-                    cursor.execute(deals_query, (buyer_input, target_input))
-                    deals_result = cursor.fetchall()
+                # Converts SQL to dataframe
+                deals_df = pd.read_sql_query(deals_query, connection, params=("%" + buyer_input + "%", "%" + target_input + "%"))
+                if not deals_df.empty:
+                    st.write("Deals Data: ")
+                    st.write(deals_df)
+                else:
+                    st.warning("No deals found ")
+                
+                urls_df = pd.read_sql_query(urls_query, connection,params=("%" + buyer_input + "%", "%" + target_input + "%") )
+                if not urls_df.empty:
+                    st.write("URLs Data: ")
+                    st.write(urls_df)
+                else:
+                    st.warning("No URLs found")
 
-                    if deals_result:
-                        # Convert the result to a pandas DataFrame
-                        deals_df = pd.DataFrame(
-                            deals_result,
-                            columns=[desc[0] for desc in cursor.description],
-                        )
-                        st.write("Deals Data:")
-                        st.write(deals_df)
-                    else:
-                        st.warning("No deals found for the given companies.")
-
-                    # Query for URLs
-                    cursor.execute(urls_query, (buyer_input, target_input))
-                    urls_result = cursor.fetchall()
-
-                    if urls_result:
-                        # Convert the result to a pandas DataFrame
-                        urls_df = pd.DataFrame(
-                            urls_result,
-                            columns=[desc[0] for desc in cursor.description],
-                        )
-                        st.write("URLs Data:")
-                        st.write(urls_df)
-                    else:
-                        st.warning("No URLs found for the given companies.")
+                
 
             except Exception as query_error:
                 st.error(f"Error querying the database: {query_error}")
