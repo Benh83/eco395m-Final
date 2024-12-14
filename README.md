@@ -1,4 +1,6 @@
-# Group Members
+
+# Automating Investment Banking M&A Data Collection
+## Group Members
 Matias Ibarburu
 
 Vighnesh Avadhanam
@@ -9,14 +11,11 @@ Maksim Korenev
 
 Chris Cain
 
-# Goal of the Analysis
+# Goal of the Project
 The goal of this project is to automate a mind-numbing and time intensive process for Investment Banking Analysts. For any Merger or Acquisition, there is an industry standard sheet that must be filled out with basic information to create a deal profile. The goal of this project was to use an LLM to fill out this sheet for any given transaction when the user entered the names of two companies who engaged in the deal.
 
 In order to maximize the accessibility and manipulability of the data, we decided to append the data to a table within a SQL Postgres database on Google Cloud, as well as return an Excel file. Because this information is used to inform financial decisions, we prioritized accuracy and ease of access to citations by making links accessible in a connected table. 
 # Methodology
-
-## Overview
-![](images/flowchartmd1.png)
 
 ## Data Gathering
 The original Investment Banking information sheet we wanted to recreate had these fields: 
@@ -26,11 +25,13 @@ The original Investment Banking information sheet we wanted to recreate had thes
 
 We were faced with the fact that the information needed to fill out these fields would encompass many different types of data, and we would also have to carefully engineer prompts so that the AI returned something our functions could automatically parse. The information is all publicly available, but must be gathered from a combination of news sources and company reports. Because of this unique combination of data, we first chose to approach the problem using a ChatGPT API. ChatGPT responded remarkably well to our prompts when we input them in the web interface directly, however, when we tried to do those same prompts through the API the quality fell of dramatically. Additionally, ChatGPT has some difficulty returning valid links, which would have made our reference table difficult.
 
-We did some research and switched over to a Perplexity API. Perplexity is specifically designed for research and has a much more rigorous system in place to pull valid sources. Perplexity did a much better job of pulling data accurately through the API. We realized that while Perplexity gathered text-based information very well, it had some difficulty producing certain numeric values. In particular, EV and Ebitda caused Perplexity to report arbitrary numbers or just repeat a different value it had already created. After we had scraped all the other columns through Perplexity, we created a function that generated the needed variables and added them to the Pandas dataframe. We manually calculated EV as Equity (capitalization of the target company) plus net debt and Ebitda as operating profit plus depreciation and amortization. Even though Perplexity couldn't reliably pull that data from the internet, we could generate it from other information that could be. 
+We did some research and switched over to a Perplexity API. Perplexity is specifically designed for research and has a much more rigorous system in place to pull valid sources. Perplexity did a much better job of pulling URLs accurately through the API. We realized that while Perplexity gathered text-based information very well, it had some difficulty producing certain numeric values. In particular, EV and EBITDA caused Perplexity to report arbitrary numbers or just repeat a different value it had already created. After we had scraped all the other columns through Perplexity, we created a function that generated the needed variables and added them to the Pandas Dataframe. We manually calculated EV as Equity (capitalization of the target company) plus Net Debt and EBITDA as operating profit plus depreciation and amortization. Even though Perplexity couldn't reliably pull that data from the Internet, we could generate it from other information that could be pulled.
 
 While Perplexity could return most of the data effectively, we recognized that it would be nearly impossible to always get accurate data or even data at all for any specific value. The fact that Perplexity could become confused or even refuse to return a specific value meant that we had to allow some more room for human intervention, both for filling in missing values and verifying fishy values. As we narrowed down our prompts we began to trust Perplexity's data, and most of our problems came from Perplexity being hesitant to put down anything it wasn't exceedingly sure of. For filling in those fields that Perplexity didn't feel comfortable giving, we added a link table with the source for each variable. While the AI didn't always return a value, it consistently gave a relevant link, even for fields it couldnt fully fill out.  
 
+
 ## Structure
+![](images/flowchartmd1.png)
 We created a Streamlit dashboard where the user entered the company names of the companies involved in the deal. If the deal had already been entered in the deal database, the information would be returned to the user directly in Streamlit. If the deal does not return, the user can either run Final.py and and enter company names directly (mode 1), or loop Final.py through an Excel file with a large list of deals (mode 2). The two company names are then pushed into Perplexity alongside a series of unique prompts from an Excel file. Along side the unique prompt for each variable, we listed the data type we wanted Perplexity to return the information as.
 
 We found that Perplexity wouldn't get bogged down when we gave more specific information, but rather, that it was quite good at honing down its search. We struggled with a majority of null values early on, but through careful consideration and lengthening of the prompts we cut down on these. Perplexity returns a Json, which we then clean and turn into a Pandas dataframe. This dataframe has two tables with the same columns, one table with the data, and the other with the corresponding URL from which the data was derived. 
@@ -43,8 +44,12 @@ You might notice that the url and deal tables rows do not match. You would do we
 As a complement to the database we produce an Excel file for each transaction, with a sheet for data along with a sheet for the associated sources. Any given deal that is entered into Final.py can accessed on streamlit, queried from the SQL database, or viewed as an Excel file.
 
 # Findings
-After running 100 companies through, the biggest areas of error became apparent.
-I WILL MAKE A GRAPH OF THIS
+After running many companies through, the biggest areas of error became apparent. Premium, Implied Net Debt, yearly Revenue, Ebitda, and Ev Sales all did not come up consistently. The first reason for this was that the data for these values was not as present online, particularly in Perplexity's searches related to M&A deals. The second problem with these values was that they were usually calculated rather than found, meaning that a higher version of Perplexity could better approach the additional step of calculation.
+
+![](images/null.png)
+
+We found that for most other values, we had a much higher rate of return, and that Perplexity's data was quite accurate when it was actually confident enough to give it. The short deal description, business description, and main rationale were all very relevant and accurate. 
+
 
 # Limitations
 
@@ -73,7 +78,7 @@ While we are aiming to produce accurate data, the reality of mistakes and null v
 
 # Instructions
 ## Installation
-Pull the contents of the eco395m-Final Main branch onto your device locally. Run "pip install -r requirements.txt." 
+Pull the contents of the eco395m-Final Main branch onto your device locally. Run `pip install -r requirements.txt`. 
 ## Perplexity API
 Buy a Perplexity API key. Depending on your desired accuracy and budget, select your model. Enter your API key into your .env file.
 ## Approach
@@ -83,29 +88,11 @@ If you are interested in getting the Excel files for individual deals, you don't
 ### Full Database Option
 If you want to create a database of deals you can return to, host a Postgres compatible database and enter your credentials into your .env file. Make sure to keep track of how you enter company names so you are able to access them through Streamlit later. 
 ## Returning the Data
+
 ### Mode 1
 If you just want the data for two companies, run Final.py, select mode 1, then enter the names of the buyer and seller. An Excel file with the links and deal data will be put into your data folder
 ### Mode 2
 Put an Excel file of deals you want to run into your deals file, then run Final.py and select mode 2.
 ## Database
-If you have a database, any deals you enter will be added to it, and you can access them through the Streamlit dashboard (GIVE MORE INFO ON HOW TO GET THE DASHBOARD GOING)
-
-
-
-
-Requirements for reporting your analysis:
-
-The goal of the analysis is must be clearly articulated
-The report must include your methodology
-The report must include a description of your project and its findings (or lack of findings)
-Your findings (or non-findings) must be clearly documented
-Your findings must be supported by your analysis
-The limitations of the analysis must be clearly outlined
-Extensions of your analysis or areas for more research must be included in your report
-You should not include analysis, plots, discoveries, that aren’t directly related to your findings – you can put them as an appendix in another file if you like
-Requirements for reporting about the data:
-
-Source(s) of dataset(s) must be clearly documented
-Data collection methods must be understood and clearly documented. You should read and summarize the documentation of the data, make sure that you understand and document all columns/features that are relevant to your analysis. You should understand and summarize what isn’t in the data too.
-Limitations of the data must be clearly outlined
-A discussion of extensions of data that would be required to improve the analysis should be included
+If you have a database, any deals you enter will be added to it, and you can access them through the Streamlit dashboard.
+To access streamlit application, run "streamlit.py" using `streamlit run streamlit.py`. 

@@ -1,0 +1,82 @@
+{
+    "Buyer": {
+        "Buyer": "ConocoPhillips (NYSE:COP)",
+        "URL": null
+    },
+    "Target": {
+        "Target": "Marathon Oil Corporation",
+        "URL": null
+    },
+    "Date announced": {
+        "Date announced": "05/29/2024",
+        "URL": "https://www.conocophillips.com/news-media/story/conocophillips-to-acquire-marathon-oil-corporation-in-all-stock-transaction-provides-shareholder-distribution-update/"
+    },
+    "Date closed": {
+        "Date closed": "11/22/2024",
+        "URL": "https://www.stocktitan.net/news/COP/conoco-phillips-completes-acquisition-of-marathon-oil-g56ikny1sqf7.html"
+    },
+    "Industry of Target (1 or 2 words maximum)": {
+        "Industry of Target": "Oil & Gas",
+        "Full URL": "https://www.conocophillips.com/news-media/story/conocophillips-to-acquire-marathon-oil-corporation-in-all-stock-transaction-provides-shareholder-distribution-update/"
+    },
+    "Acquired percentage of the business as number": {
+        "Acquired percentage of the business": 100,
+        "URL": "https://www.stocktitan.net/news/COP/conoco-phillips-completes-acquisition-of-marathon-oil-g56ikny1sqf7.html"
+    },
+    "Private or public deal? (return 1 word - either public or private)": {
+        "deal_type": "public",
+        "url": "https://www.conocophillips.com/news-media/story/conocophillips-to-acquire-marathon-oil-corporation-in-all-stock-transaction-provides-shareholder-distribution-update/"
+    },
+    "Deal size, mln $": {
+        "Deal size, mln $": 22500.0,
+        "full URL": "https://www.conocophillips.com/news-media/story/conocophillips-to-acquire-marathon-oil-corporation-in-all-stock-transaction-provides-shareholder-distribution-update/"
+    },
+    "Premium (one-day prior the announcement)": {
+        "Premium (one-day prior the announcement)": "14.7%",
+        "Full URL": "https://www.conocophillips.com/news-media/story/conocophillips-to-acquire-marathon-oil-corporation-in-all-stock-transaction-provides-shareholder-distribution-update/"
+    },
+    "Implied equity value (capitalization of target company - price of one share multiplied by number of target\u2019s shares on the moment of deal announcement), mln $": {
+        "Implied equity value": 22.5,
+        "URL": "https://www.controlglobal.com/industry-news/news/55090007/conocophillips-buying-marathon-oil-for-225-billion"
+    },
+    "Implied Net Debt (preferrably taken from last balance sheet prior to the deal, calculated as target company's total debt minus cash), mln $": {
+        "Implied Net Debt": 5.4,
+        "URL": "https://www.conocophillips.com/news-media/story/conocophillips-to-acquire-marathon-oil-corporation-in-all-stock-transaction-provides-shareholder-distribution-update/"
+    },
+    "Form of consideration (return either all-cash, all-stock, all-debt, mixture (in this case return )  ": {
+        "Form of consideration": "all-stock",
+        "URL": "https://www.conocophillips.com/news-media/story/conocophillips-to-acquire-marathon-oil-corporation-in-all-stock-transaction-provides-shareholder-distribution-update/"
+    },
+    "Short deal description (maximum 125 symbols)": {
+        "Short deal description": "ConocoPhillips to acquire Marathon Oil in an all-stock transaction valued at $22.5 billion, including $5.4 billion of net debt, adding high-quality, low-cost inventory to ConocoPhillips' U.S. unconventional portfolio and expected to be immediately accretive to earnings and cash flows.",
+        "Full URL": "https://www.conocophillips.com/news-media/story/conocophillips-to-acquire-marathon-oil-corporation-in-all-stock-transaction-provides-shareholder-distribution-update/"
+    },
+    "Revenue for the full year of the announcement date (if no information, take the revenue for the year which preceeded the announcement date), mln $": {
+        "Revenue": null,
+        "URL": "https://www.conocophillips.com/news-media/story/conocophillips-to-acquire-marathon-oil-corporation-in-all-stock-transaction-provides-shareholder-distribution-update/"
+    },
+    "EBITDA (calculated as operating profit plus depreciation) for the full year of the announcement date (if no information, take the revenue for the year which preceeded the announcement date),mln $": {
+        "EBITDA": null,
+        "URL": "https://www.conocophillips.com/news-media/story/conocophillips-to-acquire-marathon-oil-corporation-in-all-stock-transaction-provides-shareholder-distribution-update/"
+    },
+    "Short Business description of target company (maximum 125 symbols)": {
+        "Short Business Description": "Marathon Oil Corporation is an oil and gas exploration and production company, adding high-quality, low-cost inventory to ConocoPhillips' U.S. unconventional portfolio.",
+        "Full URL": "https://www.conocophillips.com/news-media/story/conocophillips-to-acquire-marathon-oil-corporation-in-all-stock-transaction-provides-shareholder-distribution-update/"
+    },
+    "Advisor to Target (seller) company (if several advisors were on the deal, return all known)": {
+        "Advisor to Target (seller) company": null,
+        "full URL": "https://www.stocktitan.net/news/COP/conoco-phillips-completes-acquisition-of-marathon-oil-g56ikny1sqf7.html"
+    },
+    "Advisor to Buyer (acquirer) (if several advisors were on the deal, return all known)": {
+        "Advisor to Buyer": null,
+        "Full URL": "https://www.conocophillips.com/news-media/story/conocophillips-to-acquire-marathon-oil-corporation-in-all-stock-transaction-provides-shareholder-distribution-update/"
+    },
+    "Accretive or Dilutive deal": {
+        "deal_type": "accretive",
+        "url": "https://www.stocktitan.net/news/COP/conoco-phillips-completes-acquisition-of-marathon-oil-g56ikny1sqf7.html"
+    },
+    "Main rationale (why the acquirer purchased the target? - (maximum 125 symbols))": {
+        "Main rationale": "ConocoPhillips acquired Marathon Oil to enhance its U.S. unconventional portfolio with high-quality, low-cost inventory, expecting synergies of over $1 billion within 12 months and immediate accretion to earnings, cash flows, and return of capital per share.",
+        "URL": "https://www.stocktitan.net/news/COP/conoco-phillips-completes-acquisition-of-marathon-oil-g56ikny1sqf7.html"
+    }
+}

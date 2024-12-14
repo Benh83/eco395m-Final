@@ -1,0 +1,82 @@
+{
+    "Buyer": {
+        "Buyer": "VinFast Auto Ltd. (NasdaqGS:VFS)",
+        "URL": null
+    },
+    "Target": {
+        "Target": "Black Spade Acquisition Co",
+        "URL": null
+    },
+    "Date announced": {
+        "Date announced": "08/10/2023",
+        "URL": "https://vinfastauto.us/newsroom/press-release/vinfast-and-black-spade-acquisition-co-announce-approval-of-business"
+    },
+    "Date closed": {
+        "Date closed": "08/15/2023",
+        "Full URL": "https://technode.global/2023/08/15/vinfast-and-black-spade-complete-business-combination/"
+    },
+    "Industry of Target (1 or 2 words maximum)": {
+        "Industry of Target": "Shell Companies",
+        "Full URL": "https://stockanalysis.com/stocks/bsii/company/"
+    },
+    "Acquired percentage of the business": {
+        "Acquired percentage of the business": "100%",
+        "Full URL": "https://technode.global/2023/08/15/vinfast-and-black-spade-complete-business-combination/"
+    },
+    "Private or public deal? (return 1 word - either public or private)": {
+        "deal_type": "public",
+        "url": "https://www.repairerdrivennews.com/2023/08/16/vinfast-completes-merger-begins-trading-on-nasdaq/"
+    },
+    "Deal size, mln $": {
+        "Deal size, mln $": 23000.0,
+        "full URL": "https://vinfastauto.us/newsroom/press-release/vinfast-to-publicly-list-through-business-combination-with-black-spade"
+    },
+    "Premium (one-day prior the announcement)": {
+        "Premium (one-day prior the announcement)": null,
+        "Full URL": "https://technode.global/2023/08/15/vinfast-and-black-spade-complete-business-combination/"
+    },
+    "Implied equity value (capitalization of target company - price of one share multiplied by number of target\u2019s shares on the moment of deal announcement), mln $": {
+        "Implied equity value (capitalization of target company)": 22.0,
+        "full URL": "https://www.repairerdrivennews.com/2023/08/16/vinfast-completes-merger-begins-trading-on-nasdaq/"
+    },
+    "Implied Net Debt (preferrably taken from last balance sheet prior to the deal, calculated as target company's total debt minus cash), mln $": {
+        "Implied Net Debt": null,
+        "URL": "https://technode.global/2023/08/15/vinfast-and-black-spade-complete-business-combination/"
+    },
+    "Form of consideration (return either all-cash, all-stock, all-debt, mixture (in this case return )  ": {
+        "Form of consideration": "mixture",
+        "Full URL": "https://www.prnewswire.com/news-releases/black-spade-acquisition-co-announces-intention-to-voluntarily-delist-from-nyse-american-llc-conditional-upon-consummation-of-its-pending-business-combination-with-vinfast-auto-ltd-301897776.html"
+    },
+    "Short deal description (maximum 125 symbols)": {
+        "Short deal description": "VinFast Auto Ltd. and Black Spade Acquisition Co completed a business combination, with Black Spade becoming a wholly owned subsidiary of VinFast, and VinFast's shares and warrants commencing trading on Nasdaq under the ticker symbols 'VFS' and 'VFSWW'.",
+        "Full URL": "https://technode.global/2023/08/15/vinfast-and-black-spade-complete-business-combination/"
+    },
+    "Revenue for the full year of the announcement date (if no information, take the revenue for the year which preceeded the announcement date), mln $": {
+        "Revenue": null,
+        "URL": "https://www.repairerdrivennews.com/2023/08/16/vinfast-completes-merger-begins-trading-on-nasdaq/"
+    },
+    "EBITDA (calculated as operating profit plus depreciation) for the full year of the announcement date (if no information, take the revenue for the year which preceeded the announcement date),mln $": {
+        "EBITDA": null,
+        "URL": "https://www.prnewswire.com/news-releases/black-spade-acquisition-co-announces-intention-to-voluntarily-delist-from-nyse-american-llc-conditional-upon-consummation-of-its-pending-business-combination-with-vinfast-auto-ltd-301897776.html"
+    },
+    "Short Business description of target company (maximum 125 symbols)": {
+        "Short Business Description": "Black Spade Acquisition Co is a blank check company incorporated for the purpose of effecting a business combination, specifically with VinFast Auto Ltd.",
+        "Full URL": "https://technode.global/2023/08/15/vinfast-and-black-spade-complete-business-combination/"
+    },
+    "Advisor to Target (seller) company (if several advisors were on the deal, return all known)": {
+        "Advisor to Target (seller) company": "Latham & Watkins LLP",
+        "Full URL": "https://www.businesswire.com/news/home/20240829272379/en/Black-Spade-Acquisition-II-Co-Announces-Closing-Of-150-Million-Initial-Public-Offering"
+    },
+    "Advisor to Buyer (acquirer) (if several advisors were on the deal, return all known)": {
+        "Advisor to Buyer": "Not specified",
+        "Full URL": "https://vinfastauto.us/newsroom/press-release/vinfast-to-publicly-list-through-business-combination-with-black-spade"
+    },
+    "Accretive or Dilutive deal": {
+        "deal_type": "accretive",
+        "url": "https://www.repairerdrivennews.com/2023/08/16/vinfast-completes-merger-begins-trading-on-nasdaq/"
+    },
+    "Main rationale (why the acquirer purchased the target? - (maximum 125 symbols))": {
+        "Main rationale": "The partnership with Black Spade and listing of VinFast in the U.S. represents the perfect capital raising avenue for our future global ambitions and is an important accomplishment for Vingroup, leveraging VinFast's ability to quickly reach international markets.",
+        "URL": "https://vinfastauto.us/newsroom/press-release/vinfast-to-publicly-list-through-business-combination-with-black-spade"
+    }
+}
