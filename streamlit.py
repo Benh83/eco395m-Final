@@ -26,6 +26,10 @@ def run_app():
     # Input fields for target and buyer company
     target_input = st.text_input("Enter Target Company here: ")
     buyer_input = st.text_input("Enter Buyer Company here: ")
+    target_input= ''.join(target_input.split())
+    buyer_input = ''.join(buyer_input.split())
+    target_input = target_input.lower()
+    buyer_input = buyer_input.lower()
 
     # When the "Submit" button is clicked
     if st.button("Submit"):
