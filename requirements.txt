@@ -7,3 +7,4 @@ markdown
 xlrd
 xlsxwriter
 streamlit
+psycopg2
