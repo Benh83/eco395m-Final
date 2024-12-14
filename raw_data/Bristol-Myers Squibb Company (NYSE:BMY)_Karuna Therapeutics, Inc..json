@@ -1,0 +1,82 @@
+{
+    "Buyer": {
+        "Buyer": "Bristol-Myers Squibb Company (NYSE:BMY)",
+        "URL": null
+    },
+    "Target": {
+        "Target": "Karuna Therapeutics, Inc.",
+        "URL": null
+    },
+    "Date announced": {
+        "Date announced": "12/22/2023",
+        "URL": "https://www.biopharmadive.com/news/bristol-myers-karuna-acquire-schizophrenia-kar-xt/703313/"
+    },
+    "Date closed": {
+        "Date closed": "03/19/2024",
+        "Full URL": "https://www.pharmaceutical-technology.com/news/bristol-myers-squibb-karuna/"
+    },
+    "Industry of Target (1 or 2 words maximum)": {
+        "Industry of Target": "Biopharmaceutical",
+        "URL": "https://www.biopharmadive.com/news/bristol-myers-karuna-acquire-schizophrenia-kar-xt/703313/"
+    },
+    "Acquired percentage of the business as number": {
+        "Acquired percentage of the business": 100,
+        "Full URL": "https://www.pharmaceutical-technology.com/news/bristol-myers-squibb-karuna/"
+    },
+    "Private or public deal? (return 1 word - either public or private)": {
+        "deal_type": "public",
+        "url": "https://www.biopharmadive.com/news/bristol-myers-karuna-acquire-schizophrenia-kar-xt/703313/"
+    },
+    "Deal size, mln $": {
+        "Deal size, mln $": 14000.0,
+        "full URL": "https://www.biopharmadive.com/news/bristol-myers-karuna-acquire-schizophrenia-kar-xt/703313/"
+    },
+    "Premium (one-day prior the announcement)": {
+        "Premium": "53%",
+        "URL": "https://www.biopharmadive.com/news/bristol-myers-karuna-acquire-schizophrenia-kar-xt/703313/"
+    },
+    "Implied equity value (capitalization of target company - price of one share multiplied by number of target\u2019s shares on the moment of deal announcement), mln $": {
+        "Implied equity value (capitalization of target company)": 14000.0,
+        "URL": "https://www.biopharmadive.com/news/bristol-myers-karuna-acquire-schizophrenia-kar-xt/703313/"
+    },
+    "Implied Net Debt (preferrably taken from last balance sheet prior to the deal, calculated as target company's total debt minus cash), mln $": {
+        "Implied Net Debt": 1270.0,
+        "URL": "https://www.biopharmadive.com/news/bristol-myers-karuna-acquire-schizophrenia-kar-xt/703313/"
+    },
+    "Form of consideration (return either all-cash, all-stock, all-debt, mixture (in this case return )  ": {
+        "Form of consideration": "all-cash",
+        "Full URL": "https://www.biopharmadive.com/news/bristol-myers-karuna-acquire-schizophrenia-kar-xt/703313/"
+    },
+    "Short deal description (maximum 125 symbols)": {
+        "Short deal description": "Bristol Myers Squibb to acquire Karuna Therapeutics for $14 billion, gaining KarXT, a potential new schizophrenia treatment with a unique mechanism of action.",
+        "Full URL": "https://www.biopharmadive.com/news/bristol-myers-karuna-acquire-schizophrenia-kar-xt/703313/"
+    },
+    "Revenue for the full year of the announcement date (if no information, take the revenue for the year which preceeded the announcement date), mln $": {
+        "Revenue": null,
+        "URL": "https://www.biopharmadive.com/news/bristol-myers-karuna-acquire-schizophrenia-kar-xt/703313/"
+    },
+    "EBITDA (calculated as operating profit plus depreciation) for the full year of the announcement date (if no information, take the revenue for the year which preceeded the announcement date),mln $": {
+        "EBITDA": null,
+        "URL": "https://www.biopharmadive.com/news/bristol-myers-karuna-acquire-schizophrenia-kar-xt/703313/"
+    },
+    "Short Business description of target company (maximum 125 symbols)": {
+        "short_business_description": "Karuna Therapeutics is a biopharmaceutical company focused on developing innovative treatments for psychiatric and neurological disorders, notably its lead asset KarXT, a potential first-in-class treatment for schizophrenia.",
+        "full_url": "https://www.biopharmadive.com/news/bristol-myers-karuna-acquire-schizophrenia-kar-xt/703313/"
+    },
+    "Advisor to Target (seller) company (if several advisors were on the deal, return all known)": {
+        "Advisor to Target": "The Goldman Sachs Group Inc, Citigroup Inc",
+        "URL": "https://www.pharmaceutical-technology.com/news/bristol-myers-squibb-karuna/"
+    },
+    "Advisor to Buyer (acquirer) (if several advisors were on the deal, return all known)": {
+        "Advisor to Buyer": "Gordon Dyal and Citi, with legal counsel from Covington & Burling",
+        "URL": "https://www.pharmaceutical-technology.com/news/bristol-myers-squibb-karuna/"
+    },
+    "Accretive or Dilutive deal": {
+        "deal_type": "accretive",
+        "url": "https://news.bms.com/news/details/2023/Bristol-Myers-Squibb-Strengthens-Neuroscience-Portfolio-with-Acquisition-of-Karuna-Therapeutics/default.aspx"
+    },
+    "Main rationale (why the acquirer purchased the target? - (maximum 125 symbols))": {
+        "Main rationale": "Bristol Myers Squibb acquired Karuna Therapeutics to expand its neuroscience portfolio, particularly to gain access to KarXT, a promising antipsychotic drug with a unique mechanism of action that could address significant unmet medical needs in schizophrenia and other neurological conditions.",
+        "URL": "https://www.biopharmadive.com/news/bristol-myers-karuna-acquire-schizophrenia-kar-xt/703313/"
+    }
+}

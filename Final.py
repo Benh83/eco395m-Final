@@ -13,14 +13,7 @@ from Clean_Data import (
 from dotenv import load_dotenv
 
 def clean_company_name(name):
-    """
-    Cleans company names by removing unwanted parts like 'Inc.', 'Public Limited Company', 'LP', etc.
-    """
-    patterns = [
-        r'\s+Inc\.?', r'\s+L\.?P\.?', r'\s+Co\.?', r'\s+Public Limited Company', r'\s*\(.*?\)', r'[.,]'
-    ]
-    for pattern in patterns:
-        name = re.sub(pattern, '', name, flags=re.IGNORECASE).strip()
+    name=re.sub(r'[.,\\ /:;]', '', name.strip())
     return name
 
 engine = create_db_engine()
@@ -45,8 +38,7 @@ else:
     exit()
 
 for Target, Buyer in targets_buyers:
-    Target = Target.strip()
-    Buyer = Buyer.strip()
+
     print(f"Processing deal for Target: {Target}, Buyer: {Buyer}")
 
     query_values = (
@@ -73,18 +65,21 @@ for Target, Buyer in targets_buyers:
 
     elif len(sql_values) == 0 or found == "no":
         print("Extracting The Data from Internet")
+
+        Target = clean_company_name(Target)
+        Buyer = clean_company_name(Buyer)
         extracted_data = get_Data(Buyer, Target)
         df_data = clean_values(extracted_data)
         df_url = clean_urls(extracted_data)
-        clean_urls = clean_column_names(df_url)
+        df_url = clean_column_names(df_url)
         df_data = clean_column_names(df_data)
         clean_data = cleaning(df_data)
-        clean_urls["buyer"] = clean_data["buyer"]
-        clean_urls["target"] = clean_data["target"]
-        deal_id = append_deal_to_database(engine, clean_data, clean_urls)
+        df_url["buyer"] = clean_data["buyer"]
+        df_url["target"] = clean_data["target"]
+        deal_id = append_deal_to_database(engine, clean_data, df_url)
         query_values = "SELECT * FROM deals WHERE id=%s"
         params = (deal_id,)
-        sql_values = pd.read_sql_query(query_values, engine, params=params)
+        sql_values = pd.read_sql_query(query_values, engine, params=params
 
     deal_id = sql_values.loc[0, "id"]
     query_url = "Select*from urls where deal_id=%s"
