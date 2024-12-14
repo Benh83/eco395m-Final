@@ -95,4 +95,4 @@ If you just want the data for two companies, run Final.py, select mode 1, then e
 Put an Excel file of deals you want to run into your deals file, then run Final.py and select mode 2.
 ## Database
 If you have a database, any deals you enter will be added to it, and you can access them through the Streamlit dashboard.
-To access streamlit application, run "streamlit.py" using "streamlit run streamlit.py". Streamlit requires secrets.toml which stores Postgres credentials in order to connect with database. Secrets.toml is to be stored in a folder called .streamlit.
+To access streamlit application, run "streamlit.py" using `streamlit run streamlit.py`. 
