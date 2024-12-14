@@ -33,6 +33,8 @@ elif mode == "2":
     file_path = os.path.join("setup", "Top-100 deals.xls")
     deals_df = pd.read_excel(file_path)
     targets_buyers = deals_df[["Target/Issuer", "Buyers/Investors"]].values.tolist()
+    Target_c = clean_company_name(Target)
+    Buyer_c = clean_company_name(Buyer)
 else:
     print("Invalid selection. Exiting.")
     exit()
@@ -42,10 +44,10 @@ for Target, Buyer in targets_buyers:
     print(f"Processing deal for Target: {Target}, Buyer: {Buyer}")
 
     query_values = (
-        "SELECT * FROM deals WHERE LOWER(target) LIKE %s AND LOWER(buyer)  LIKE %s"
+        "SELECT * FROM deals WHERE (LOWER(target) LIKE %s or LOWER(target) LIKE %s ) AND (LOWER(buyer) LIKE %s or LOWER(buyer) LIKE %s)"
     )
     # Parameters dictionary
-    params = (f"%{Target.lower()}%", f"%{Buyer.lower()}%")
+    params = (f"%{Target.lower()}%", f"%{Buyer.lower()}%",f"%{Target_c.lower()}%", f"%{Buyer_c.lower()}%")
     sql_values = pd.read_sql_query(query_values, engine, params=params)
 
     found = "yes"
@@ -66,26 +68,27 @@ for Target, Buyer in targets_buyers:
     elif len(sql_values) == 0 or found == "no":
         print("Extracting The Data from Internet")
 
-        Target = clean_company_name(Target)
-        Buyer = clean_company_name(Buyer)
-        extracted_data = get_Data(Buyer, Target)
+        Target_c = clean_company_name(Target)
+        Buyer_c = clean_company_name(Buyer)
+        extracted_data = get_Data(Buyer_c, Target_c)
         df_data = clean_values(extracted_data)
         df_url = clean_urls(extracted_data)
         df_url = clean_column_names(df_url)
-        df_data = clean_column_names(df_data)
         clean_data = cleaning(df_data)
         df_url["buyer"] = clean_data["buyer"]
         df_url["target"] = clean_data["target"]
         deal_id = append_deal_to_database(engine, clean_data, df_url)
         query_values = "SELECT * FROM deals WHERE id=%s"
         params = (deal_id,)
-        sql_values = pd.read_sql_query(query_values, engine, params=params
+        sql_values = pd.read_sql_query(query_values, engine, params=params)
 
     deal_id = sql_values.loc[0, "id"]
     query_url = "Select*from urls where deal_id=%s"
     params = (float(deal_id),)
     sql_urls = pd.read_sql_query(query_url, engine, params=params)
-    OUTPATH_PATH = os.path.join("data", f"{Target}_{Buyer}.xlsx")
+    Target_c = clean_company_name(Target)
+    Buyer_c = clean_company_name(Buyer)
+    OUTPATH_PATH = os.path.join("data", f"{Target_c}_{Buyer_c}.xlsx")
 
     with pd.ExcelWriter(OUTPATH_PATH, engine="xlsxwriter") as writer:
         sql_values.to_excel(writer, sheet_name="data", index=False)

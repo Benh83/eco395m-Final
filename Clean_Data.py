@@ -27,9 +27,38 @@ def clean_column_names(dataframe):
 
 def cleaning(dataframe):
     dataframe=clean_column_names(dataframe)
-    dataframe["date_announced"] = pd.to_datetime(
-        dataframe["date_announced"], format="%m/%d/%Y"
+    #Clean Dates depending on what format they come in. 
+    if dataframe["date_announced"].isna()[0]:
+        dataframe.loc[0,"date_announced"] = pd.to_datetime(
+            dataframe.loc[0,"date_announced"], format="%m/%d/%Y"
     )
+    
+    elif dataframe.loc[0,"date_announced"].count("/")==2 : 
+        dataframe.loc[0,"date_announced"] = pd.to_datetime(
+            dataframe.loc[0,"date_announced"], format="%m/%d/%Y"
+    )
+    elif dataframe.loc[0,"date_announced"].count("/")==1:
+        dataframe.loc[0,"date_announced"]=pd.to_datetime(dataframe.loc[0,"date_announced"].split("/")[0]+"/01/"+(dataframe.loc[0,"date_announced"].split("/"))[1])
+    else:
+        dataframe.loc[0,"date_announced"]=pd.to_datetime(None)
+
+
+    if dataframe["date_closed"].isna()[0]:
+        dataframe.loc[0,"date_closed"] = pd.to_datetime(
+            dataframe.loc[0,"date_closed"], format="%m/%d/%Y"
+    )
+    
+    elif dataframe.loc[0,"date_closed"].count("/")==2 : 
+        dataframe.loc[0,"date_closed"] = pd.to_datetime(
+            dataframe.loc[0,"date_closed"], format="%m/%d/%Y"
+    )
+    elif dataframe.loc[0,"date_closed"].count("/")==1:
+        dataframe.loc[0,"date_closed"]=pd.to_datetime(dataframe.loc[0,"date_closed"].split("/")[0]+"/01/"+(dataframe.loc[0,"date_closed"].split("/"))[1])
+    else:
+        dataframe.loc[0,"date_closed"]=pd.to_datetime(None)
+
+
+
     dataframe["date_closed"] = pd.to_datetime(
         dataframe["date_closed"], format="%m/%d/%Y"
     )
