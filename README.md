@@ -95,4 +95,4 @@ If you just want the data for two companies, run Final.py, select mode 1, then e
 Put an Excel file of deals you want to run into your deals file, with the name properly saved to match the filename in Final.py, then run Final.py and select mode 2.
 ## Database
 If you have a database, any deals you enter will be added to it, and you can access them through the Streamlit dashboard.
-To access streamlit application, run "streamlit.py" using `streamlit run streamlit.py`. After that, if you enter company names, Streamlit will return the latest iteration of that deal that is present within your database.
+To access streamlit application, run "streamlit.py" using `streamlit run streamlit.py`. Ensure that credentials are stored in a .streamlit file with the names secrets.toml. This file contains[postgres] at the top and then dialect = "postgresql", host, port, database ,username and password information. After that, if you enter company names, Streamlit will return the latest iteration of that deal that is present within your database.
