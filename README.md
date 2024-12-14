@@ -92,7 +92,7 @@ If you want to create a database of deals you can return to, host a Postgres com
 ### Mode 1
 If you just want the data for two companies, run Final.py, select mode 1, then enter the names of the buyer and seller. An Excel file with the links and deal data will be put into your data folder
 ### Mode 2
-Put an Excel file of deals you want to run into your deals file, then run Final.py and select mode 2.
+Put an Excel file of deals you want to run into your deals file, with the name properly saved to match the filename in Final.py, then run Final.py and select mode 2.
 ## Database
 If you have a database, any deals you enter will be added to it, and you can access them through the Streamlit dashboard.
 To access streamlit application, run "streamlit.py" using `streamlit run streamlit.py`. After that, if you enter company names, Streamlit will return the latest iteration of that deal that is present within your database.
